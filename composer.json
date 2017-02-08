@@ -1,0 +1,28 @@
+{
+    "name": "krzysztofmazur/php-object-mapper",
+    "description": "Simple object mapper for PHP, convert your Model to DTO objects",
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://github.com/krzysztofmazur",
+    "authors": [
+        {"name": "Krzysztof Mazur", "email": "krz@ychu.pl"}
+    ],
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
