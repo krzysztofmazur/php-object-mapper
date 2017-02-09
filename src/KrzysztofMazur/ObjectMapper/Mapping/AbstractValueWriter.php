@@ -4,6 +4,7 @@ namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
 use KrzysztofMazur\ObjectMapper\Exception\NullSourceException;
+use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\ReferenceGetterInterface;
 
 abstract class AbstractValueWriter implements ValueWriterInterface
 {
@@ -13,11 +14,18 @@ abstract class AbstractValueWriter implements ValueWriterInterface
     private $className;
 
     /**
-     * @param string $className
+     * @var ReferenceGetterInterface
      */
-    public function __construct($className)
+    protected $referenceGetter;
+
+    /**
+     * @param string                   $className
+     * @param ReferenceGetterInterface $referenceGetter
+     */
+    public function __construct($className, ReferenceGetterInterface $referenceGetter = null)
     {
         $this->className = $className;
+        $this->referenceGetter = $referenceGetter;
     }
 
     /**
@@ -31,7 +39,12 @@ abstract class AbstractValueWriter implements ValueWriterInterface
         if (get_class($object) !== $this->className) {
             throw new NotSupportedMappingException(sprintf("Class \"%s\" is not supported", get_class($object)));
         }
-        $this->writeValue($object, $value);
+        $reference = $object;
+        if (!is_null($this->referenceGetter)) {
+            $reference = $this->referenceGetter->getReference($reference);
+        }
+
+        $this->writeValue($reference, $value);
     }
 
     /**
