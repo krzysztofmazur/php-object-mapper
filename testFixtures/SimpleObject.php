@@ -5,12 +5,12 @@ namespace TestFixtures;
 class SimpleObject
 {
     /**
-     * @var string
+     * @var mixed
      */
     private $property1;
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getProperty1()
     {
@@ -18,7 +18,7 @@ class SimpleObject
     }
 
     /**
-     * @param string $property1
+     * @param mixed $property1
      */
     public function setProperty1($property1)
     {

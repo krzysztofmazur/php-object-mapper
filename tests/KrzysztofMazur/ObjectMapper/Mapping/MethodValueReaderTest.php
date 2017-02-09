@@ -24,7 +24,7 @@ class MethodValueReaderTest extends TestCase
     public function testMethodNotFound()
     {
         $obj = new SimpleObject();
-        $reader = new MethodValueReader(get_class($obj), 'getSomething');
+        $reader = new MethodValueReader(SimpleObject::class, 'getSomething');
         $reader->read($obj);
     }
 }

@@ -18,13 +18,37 @@ class PropertyValueReaderTest extends TestCase
         $this->assertEquals('ok', $reader->read($obj));
     }
 
+    public function testNestedSuccess()
+    {
+        $obj = new SimpleObject();
+        $obj->setProperty1(new SimpleObject());
+        $obj->getProperty1()->setProperty1('ok-nested');
+
+        $reader = new PropertyValueReader(
+            SimpleObject::class,
+            'property1',
+            new PropertyValueReader(SimpleObject::class, 'property1')
+        );
+
+        $this->assertEquals('ok-nested', $reader->read($obj));
+    }
+
     /**
      * @expectedException \KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException
      */
     public function testMethodNotFound()
     {
         $obj = new SimpleObject();
-        $reader = new PropertyValueReader(get_class($obj), 'something');
+        $reader = new PropertyValueReader(SimpleObject::class, 'something');
         $reader->read($obj);
+    }
+
+    /**
+     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NullSourceException
+     */
+    public function testNullObject()
+    {
+        $reader = new PropertyValueReader(SimpleObject::class, 'something');
+        $reader->read(null);
     }
 }
