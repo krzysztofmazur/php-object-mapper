@@ -4,6 +4,9 @@ namespace KrzysztofMazur\ObjectMapper;
 
 use KrzysztofMazur\ObjectMapper\Exception\MappingException;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 interface ObjectMapperInterface
 {
     /**
@@ -17,7 +20,7 @@ interface ObjectMapperInterface
 
     /**
      * @param mixed  $source
-     * @param mixed $destination
+     * @param mixed  $destination
      * @param string $mapId
      * @return mixed
      * @throws MappingException
