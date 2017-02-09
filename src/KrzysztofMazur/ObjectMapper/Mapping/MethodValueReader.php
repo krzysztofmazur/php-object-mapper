@@ -12,14 +12,21 @@ class MethodValueReader extends AbstractValueReader
     private $methodName;
 
     /**
+     * @var array
+     */
+    private $arguments;
+
+    /**
      * @param string               $className
      * @param string               $methodName
+     * @param array                $arguments
      * @param ValueReaderInterface $next
      */
-    public function __construct($className, $methodName, ValueReaderInterface $next = null)
+    public function __construct($className, $methodName, $arguments = [], ValueReaderInterface $next = null)
     {
         parent::__construct($className, $next);
         $this->methodName = $methodName;
+        $this->arguments = $arguments;
     }
 
     /**
@@ -37,6 +44,6 @@ class MethodValueReader extends AbstractValueReader
         $method = $reflectionClass->getMethod($this->methodName);
         $method->setAccessible(true);
 
-        return $method->invoke($object);
+        return $method->invokeArgs($object, $this->arguments);
     }
 }
