@@ -3,6 +3,7 @@
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
+use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\ReferenceGetterInterface;
 
 class PropertyValueWriter extends AbstractValueWriter
 {
@@ -12,12 +13,13 @@ class PropertyValueWriter extends AbstractValueWriter
     private $propertyName;
 
     /**
-     * @param string $className
-     * @param string $propertyName
+     * @param string                   $className
+     * @param string                   $propertyName
+     * @param ReferenceGetterInterface $referenceGetter
      */
-    public function __construct($className, $propertyName)
+    public function __construct($className, $propertyName, ReferenceGetterInterface $referenceGetter = null)
     {
-        parent::__construct($className);
+        parent::__construct($className, $referenceGetter);
         $this->propertyName = $propertyName;
     }
 

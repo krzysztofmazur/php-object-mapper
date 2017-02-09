@@ -3,7 +3,7 @@
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\MethodNotFoundException;
-use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
+use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\ReferenceGetterInterface;
 
 class MethodValueWriter extends AbstractValueWriter
 {
@@ -13,12 +13,13 @@ class MethodValueWriter extends AbstractValueWriter
     private $methodName;
 
     /**
-     * @param string $className
-     * @param string $methodName
+     * @param string                   $className
+     * @param string                   $methodName
+     * @param ReferenceGetterInterface $referenceGetter
      */
-    public function __construct($className, $methodName)
+    public function __construct($className, $methodName, ReferenceGetterInterface $referenceGetter = null)
     {
-        parent::__construct($className);
+        parent::__construct($className, $referenceGetter);
         $this->methodName = $methodName;
     }
 
