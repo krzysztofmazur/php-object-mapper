@@ -4,10 +4,7 @@ namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
 
-/**
- * @author Krzysztof Mazur <krz@ychu.pl>
- */
-class PropertyValueReader extends AbstractValueReader
+class PropertyValueWriter extends AbstractValueWriter
 {
     /**
      * @var string
@@ -15,20 +12,19 @@ class PropertyValueReader extends AbstractValueReader
     private $propertyName;
 
     /**
-     * @param string               $className
-     * @param string               $propertyName
-     * @param ValueReaderInterface $next
+     * @param string $className
+     * @param string $propertyName
      */
-    public function __construct($className, $propertyName, ValueReaderInterface $next = null)
+    public function __construct($className, $propertyName)
     {
-        parent::__construct($className, $next);
+        parent::__construct($className);
         $this->propertyName = $propertyName;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function readValue($object)
+    protected function writeValue($object, $value)
     {
         $reflectionClass = $this->getReflectionClass();
         if (!$reflectionClass->hasProperty($this->propertyName)) {
@@ -37,9 +33,8 @@ class PropertyValueReader extends AbstractValueReader
             );
         }
 
-        $property = $reflectionClass->getProperty($this->propertyName);
+        $property = $this->getReflectionClass()->getProperty($this->propertyName);
         $property->setAccessible(true);
-
-        return $property->getValue($object);
+        $property->setValue($object, $value);
     }
 }
