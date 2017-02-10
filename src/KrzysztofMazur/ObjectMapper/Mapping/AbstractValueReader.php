@@ -59,12 +59,4 @@ abstract class AbstractValueReader implements ValueReaderInterface
     {
         return $this->className;
     }
-
-    /**
-     * @return \ReflectionClass
-     */
-    protected function getReflectionClass()
-    {
-        return new \ReflectionClass($this->className);
-    }
 }

@@ -61,12 +61,4 @@ abstract class AbstractValueWriter implements ValueWriterInterface
     {
         return $this->className;
     }
-
-    /**
-     * @return \ReflectionClass
-     */
-    protected function getReflectionClass()
-    {
-        return new \ReflectionClass($this->className);
-    }
 }

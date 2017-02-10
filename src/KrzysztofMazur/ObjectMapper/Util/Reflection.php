@@ -7,6 +7,9 @@ use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
 
 class Reflection
 {
+    /**
+     * @codeCoverageIgnore
+     */
     private function __construct()
     {
     }
