@@ -28,6 +28,6 @@ class PropertyValueWriter extends AbstractValueWriter
      */
     protected function writeValue($object, $value)
     {
-        Reflection::getProperty($this->getClassName(), $this->propertyName)->setValue($object, $value);
+        Reflection::getProperty($this->getClassName(), $this->propertyName, true)->setValue($object, $value);
     }
 }

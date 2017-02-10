@@ -27,6 +27,8 @@ class MethodNotFoundException extends MappingException
             $code,
             $previous
         );
+        $this->className = $className;
+        $this->methodName = $methodName;
     }
 
     /**

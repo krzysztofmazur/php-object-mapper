@@ -27,6 +27,8 @@ class PropertyNotFoundException extends MappingException
             $code,
             $previous
         );
+        $this->className = $className;
+        $this->propertyName = $propertyName;
     }
 
     /**

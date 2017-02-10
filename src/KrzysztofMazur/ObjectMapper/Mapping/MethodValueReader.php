@@ -2,7 +2,6 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Exception\MethodNotFoundException;
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class MethodValueReader extends AbstractValueReader
