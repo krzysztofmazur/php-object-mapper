@@ -21,13 +21,20 @@ class Mapping
     private $targetClass;
 
     /**
-     * @param string $sourceClass
-     * @param string $targetClass
+     * @var Field[]
      */
-    public function __construct($sourceClass, $targetClass)
+    private $fields;
+
+    /**
+     * @param string  $sourceClass
+     * @param string  $targetClass
+     * @param Field[] $fields
+     */
+    public function __construct($sourceClass, $targetClass, array $fields)
     {
         $this->sourceClass = $sourceClass;
         $this->targetClass = $targetClass;
+        $this->fields = $fields;
     }
 
     /**
@@ -53,5 +60,8 @@ class Mapping
             );
         }
 
+        foreach ($this->fields as $field) {
+            $field->map($source, $target);
+        }
     }
 }
