@@ -11,19 +11,19 @@ interface ObjectMapperInterface
 {
     /**
      * @param mixed  $source
-     * @param string $destinationClass
+     * @param string $targetClass
      * @param string $mapId
      * @return mixed
      * @throws MappingException
      */
-    public function map($source, $destinationClass, $mapId = null);
+    public function map($source, $targetClass, $mapId = null);
 
     /**
      * @param mixed  $source
-     * @param mixed  $destination
+     * @param mixed  $target
      * @param string $mapId
      * @return mixed
      * @throws MappingException
      */
-    public function mapToObject($source, $destination, $mapId = null);
+    public function mapToObject($source, $target, $mapId = null);
 }
