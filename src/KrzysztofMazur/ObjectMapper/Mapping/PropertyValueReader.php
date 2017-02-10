@@ -15,13 +15,12 @@ class PropertyValueReader extends AbstractValueReader
     private $propertyName;
 
     /**
-     * @param string               $className
      * @param string               $propertyName
      * @param ValueReaderInterface $next
      */
-    public function __construct($className, $propertyName, ValueReaderInterface $next = null)
+    public function __construct($propertyName, ValueReaderInterface $next = null)
     {
-        parent::__construct($className, $next);
+        parent::__construct($next);
         $this->propertyName = $propertyName;
     }
 
@@ -30,6 +29,6 @@ class PropertyValueReader extends AbstractValueReader
      */
     protected function readValue($object)
     {
-        return Reflection::getProperty($this->getClassName(), $this->propertyName, true)->getValue($object);
+        return Reflection::getProperty(get_class($object), $this->propertyName, true)->getValue($object);
     }
 }

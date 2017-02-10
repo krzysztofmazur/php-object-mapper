@@ -12,7 +12,7 @@ class MethodValueReaderTest extends TestCase
     {
         $obj = new SimpleObject();
         $obj->setProperty1('ok');
-        $reader = new MethodValueReader(SimpleObject::class, 'getProperty1');
+        $reader = new MethodValueReader('getProperty1');
 
         $this->assertEquals('ok', $reader->read($obj));
     }
@@ -23,17 +23,7 @@ class MethodValueReaderTest extends TestCase
     public function testMethodNotFound()
     {
         $obj = new SimpleObject();
-        $reader = new MethodValueReader(SimpleObject::class, 'getSomething');
-        $reader->read($obj);
-    }
-
-    /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException
-     */
-    public function testNotSupportedMapping()
-    {
-        $obj = new SimpleObject();
-        $reader = new MethodValueReader('SomeClass', 'getSomething');
+        $reader = new MethodValueReader('getSomething');
         $reader->read($obj);
     }
 
@@ -41,12 +31,7 @@ class MethodValueReaderTest extends TestCase
     {
         $obj = new SimpleObject();
         $obj->setProperty1(new \DateTime('2017-01-01 12:00:00', new \DateTimeZone('UTC')));
-        $reader = new MethodValueReader(
-            SimpleObject::class,
-            'getProperty1',
-            [],
-            new MethodValueReader(\DateTime::class, 'format', ['Y-m-d'])
-        );
+        $reader = new MethodValueReader('getProperty1', [], new MethodValueReader('format', ['Y-m-d']));
 
         $this->assertEquals('2017-01-01', $reader->read($obj));
     }

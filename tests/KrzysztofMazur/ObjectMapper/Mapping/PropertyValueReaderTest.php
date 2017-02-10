@@ -13,7 +13,7 @@ class PropertyValueReaderTest extends TestCase
         $obj = new SimpleObject();
         $obj->setProperty1('ok');
 
-        $reader = new PropertyValueReader(SimpleObject::class, 'property1');
+        $reader = new PropertyValueReader('property1');
 
         $this->assertEquals('ok', $reader->read($obj));
     }
@@ -24,11 +24,7 @@ class PropertyValueReaderTest extends TestCase
         $obj->setProperty1(new SimpleObject());
         $obj->getProperty1()->setProperty1('ok-nested');
 
-        $reader = new PropertyValueReader(
-            SimpleObject::class,
-            'property1',
-            new PropertyValueReader(SimpleObject::class, 'property1')
-        );
+        $reader = new PropertyValueReader('property1', new PropertyValueReader('property1'));
 
         $this->assertEquals('ok-nested', $reader->read($obj));
     }
@@ -39,7 +35,7 @@ class PropertyValueReaderTest extends TestCase
     public function testMethodNotFound()
     {
         $obj = new SimpleObject();
-        $reader = new PropertyValueReader(SimpleObject::class, 'something');
+        $reader = new PropertyValueReader('something');
         $reader->read($obj);
     }
 
@@ -48,7 +44,7 @@ class PropertyValueReaderTest extends TestCase
      */
     public function testNullObject()
     {
-        $reader = new PropertyValueReader(SimpleObject::class, 'something');
+        $reader = new PropertyValueReader('something');
         $reader->read(null);
     }
 }

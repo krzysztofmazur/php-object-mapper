@@ -11,7 +11,7 @@ class PropertyValueWriterTest extends TestCase
 {
     public function testWriteSuccess()
     {
-        $writer = new PropertyValueWriter(SimpleObject::class, 'property1');
+        $writer = new PropertyValueWriter('property1');
         $object = new SimpleObject();
         $writer->write($object, 'ok');
 
@@ -20,11 +20,7 @@ class PropertyValueWriterTest extends TestCase
 
     public function testNestedWrite()
     {
-        $writer = new PropertyValueWriter(
-            SimpleObject::class,
-            'property1',
-            new MethodReferenceGetter('getProperty1')
-        );
+        $writer = new PropertyValueWriter('property1', new MethodReferenceGetter('getProperty1'));
         $object = new SimpleObject();
         $object->setProperty1(new SimpleObject());
         $writer->write($object, 'ok-nested');

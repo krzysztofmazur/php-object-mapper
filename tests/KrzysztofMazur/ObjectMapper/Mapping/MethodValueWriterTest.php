@@ -11,7 +11,7 @@ class MethodValueWriterTest extends TestCase
 {
     public function testWriteSuccess()
     {
-        $writer = new MethodValueWriter(SimpleObject::class, 'setProperty1');
+        $writer = new MethodValueWriter('setProperty1');
         $object = new SimpleObject();
         $writer->write($object, 'ok');
 
@@ -20,11 +20,7 @@ class MethodValueWriterTest extends TestCase
 
     public function testNestedWrite()
     {
-        $writer = new MethodValueWriter(
-            SimpleObject::class,
-            'setProperty1',
-            new MethodReferenceGetter('getProperty1')
-        );
+        $writer = new MethodValueWriter('setProperty1', new MethodReferenceGetter('getProperty1'));
         $object = new SimpleObject();
         $object->setProperty1(new SimpleObject());
         $writer->write($object, 'ok-nested');
@@ -33,21 +29,11 @@ class MethodValueWriterTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException
-     */
-    public function testNotSupported()
-    {
-        $writer = new MethodValueWriter('SomeClass', 'setProperty1');
-        $object = new SimpleObject();
-        $writer->write($object, 'ok');
-    }
-
-    /**
      * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NullReferenceException
      */
     public function testNullReference()
     {
-        $writer = new MethodValueWriter('SomeClass', 'setProperty1');
+        $writer = new MethodValueWriter('setProperty1');
         $writer->write(null, 'ok');
     }
 }

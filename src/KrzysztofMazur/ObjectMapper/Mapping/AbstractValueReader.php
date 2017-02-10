@@ -2,28 +2,20 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
 use KrzysztofMazur\ObjectMapper\Exception\NullReferenceException;
 
 abstract class AbstractValueReader implements ValueReaderInterface
 {
-    /**
-     * @var string
-     */
-    private $className;
-
     /**
      * @var ValueReaderInterface
      */
     private $next;
 
     /**
-     * @param string               $className
      * @param ValueReaderInterface $next
      */
-    public function __construct($className, ValueReaderInterface $next = null)
+    public function __construct(ValueReaderInterface $next = null)
     {
-        $this->className = $className;
         $this->next = $next;
     }
 
@@ -34,9 +26,6 @@ abstract class AbstractValueReader implements ValueReaderInterface
     {
         if (is_null($object)) {
             throw new NullReferenceException();
-        }
-        if (get_class($object) !== $this->className) {
-            throw new NotSupportedMappingException(get_class($object));
         }
         $value = $this->readValue($object);
         if (!is_null($this->next)) {
@@ -51,12 +40,4 @@ abstract class AbstractValueReader implements ValueReaderInterface
      * @return mixed
      */
     abstract protected function readValue($object);
-
-    /**
-     * @return string
-     */
-    protected function getClassName()
-    {
-        return $this->className;
-    }
 }

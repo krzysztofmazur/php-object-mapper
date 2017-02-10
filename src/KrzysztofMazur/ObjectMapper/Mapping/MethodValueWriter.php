@@ -13,13 +13,12 @@ class MethodValueWriter extends AbstractValueWriter
     private $methodName;
 
     /**
-     * @param string                   $className
      * @param string                   $methodName
      * @param ReferenceGetterInterface $referenceGetter
      */
-    public function __construct($className, $methodName, ReferenceGetterInterface $referenceGetter = null)
+    public function __construct($methodName, ReferenceGetterInterface $referenceGetter = null)
     {
-        parent::__construct($className, $referenceGetter);
+        parent::__construct($referenceGetter);
         $this->methodName = $methodName;
     }
 
@@ -28,6 +27,6 @@ class MethodValueWriter extends AbstractValueWriter
      */
     protected function writeValue($object, $value)
     {
-        Reflection::getMethod($this->getClassName(), $this->methodName, true)->invokeArgs($object, [$value]);
+        Reflection::getMethod(get_class($object), $this->methodName, true)->invokeArgs($object, [$value]);
     }
 }

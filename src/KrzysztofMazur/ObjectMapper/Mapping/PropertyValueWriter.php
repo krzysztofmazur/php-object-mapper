@@ -13,13 +13,12 @@ class PropertyValueWriter extends AbstractValueWriter
     private $propertyName;
 
     /**
-     * @param string                   $className
      * @param string                   $propertyName
      * @param ReferenceGetterInterface $referenceGetter
      */
-    public function __construct($className, $propertyName, ReferenceGetterInterface $referenceGetter = null)
+    public function __construct($propertyName, ReferenceGetterInterface $referenceGetter = null)
     {
-        parent::__construct($className, $referenceGetter);
+        parent::__construct($referenceGetter);
         $this->propertyName = $propertyName;
     }
 
@@ -28,6 +27,6 @@ class PropertyValueWriter extends AbstractValueWriter
      */
     protected function writeValue($object, $value)
     {
-        Reflection::getProperty($this->getClassName(), $this->propertyName, true)->setValue($object, $value);
+        Reflection::getProperty(get_class($object), $this->propertyName, true)->setValue($object, $value);
     }
 }
