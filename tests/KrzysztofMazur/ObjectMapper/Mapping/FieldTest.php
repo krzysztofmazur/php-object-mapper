@@ -25,6 +25,5 @@ class FieldTest extends TestCase
 
         $field = new Field($reader, $writer);
         $field->map($source, $target);
-
     }
 }
