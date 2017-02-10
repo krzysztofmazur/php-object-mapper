@@ -31,4 +31,23 @@ class MethodValueWriterTest extends TestCase
 
         $this->assertEquals('ok-nested', $object->getProperty1()->getProperty1());
     }
+
+    /**
+     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException
+     */
+    public function testNotSupported()
+    {
+        $writer = new MethodValueWriter('SomeClass', 'setProperty1');
+        $object = new SimpleObject();
+        $writer->write($object, 'ok');
+    }
+
+    /**
+     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NullReferenceException
+     */
+    public function testNullReference()
+    {
+        $writer = new MethodValueWriter('SomeClass', 'setProperty1');
+        $writer->write(null, 'ok');
+    }
 }

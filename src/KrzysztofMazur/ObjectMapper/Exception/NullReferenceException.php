@@ -2,6 +2,6 @@
 
 namespace KrzysztofMazur\ObjectMapper\Exception;
 
-class NullSourceException extends MappingException
+class NullReferenceException extends MappingException
 {
 }

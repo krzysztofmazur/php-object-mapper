@@ -44,7 +44,7 @@ class PropertyValueReaderTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NullSourceException
+     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NullReferenceException
      */
     public function testNullObject()
     {

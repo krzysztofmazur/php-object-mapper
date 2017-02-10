@@ -3,7 +3,7 @@
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
-use KrzysztofMazur\ObjectMapper\Exception\NullSourceException;
+use KrzysztofMazur\ObjectMapper\Exception\NullReferenceException;
 
 abstract class AbstractValueReader implements ValueReaderInterface
 {
@@ -33,7 +33,7 @@ abstract class AbstractValueReader implements ValueReaderInterface
     public function read($object)
     {
         if (is_null($object)) {
-            throw new NullSourceException();
+            throw new NullReferenceException();
         }
         if (get_class($object) !== $this->className) {
             throw new NotSupportedMappingException(get_class($object));

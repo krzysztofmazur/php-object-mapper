@@ -27,6 +27,16 @@ class MethodValueReaderTest extends TestCase
         $reader->read($obj);
     }
 
+    /**
+     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException
+     */
+    public function testNotSupportedMapping()
+    {
+        $obj = new SimpleObject();
+        $reader = new MethodValueReader('SomeClass', 'getSomething');
+        $reader->read($obj);
+    }
+
     public function testReadWithArgsSuccess()
     {
         $obj = new SimpleObject();
