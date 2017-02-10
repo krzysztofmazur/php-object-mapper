@@ -53,6 +53,14 @@ abstract class AbstractValueReader implements ValueReaderInterface
     abstract protected function readValue($object);
 
     /**
+     * @return string
+     */
+    protected function getClassName()
+    {
+        return $this->className;
+    }
+
+    /**
      * @return \ReflectionClass
      */
     protected function getReflectionClass()

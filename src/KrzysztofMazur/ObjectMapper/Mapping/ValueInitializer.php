@@ -2,7 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Utils\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
 class ValueInitializer implements ValueReaderInterface
 {

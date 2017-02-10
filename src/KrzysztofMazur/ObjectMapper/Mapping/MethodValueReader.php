@@ -3,6 +3,7 @@
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\MethodNotFoundException;
+use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class MethodValueReader extends AbstractValueReader
 {
@@ -34,14 +35,7 @@ class MethodValueReader extends AbstractValueReader
      */
     protected function readValue($object)
     {
-        $reflectionClass = $this->getReflectionClass();
-        if (!$reflectionClass->hasMethod($this->methodName)) {
-            throw new MethodNotFoundException($reflectionClass->name, $this->methodName);
-        }
-
-        $method = $reflectionClass->getMethod($this->methodName);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($object, $this->arguments);
+        return Reflection::getMethod($this->getClassName(), $this->methodName, true)
+            ->invokeArgs($object, $this->arguments);
     }
 }

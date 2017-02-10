@@ -2,8 +2,8 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
 use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\ReferenceGetterInterface;
+use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class PropertyValueWriter extends AbstractValueWriter
 {
@@ -28,13 +28,6 @@ class PropertyValueWriter extends AbstractValueWriter
      */
     protected function writeValue($object, $value)
     {
-        $reflectionClass = $this->getReflectionClass();
-        if (!$reflectionClass->hasProperty($this->propertyName)) {
-            throw new PropertyNotFoundException($reflectionClass->name, $this->propertyName);
-        }
-
-        $property = $this->getReflectionClass()->getProperty($this->propertyName);
-        $property->setAccessible(true);
-        $property->setValue($object, $value);
+        Reflection::getProperty($this->getClassName(), $this->propertyName)->setValue($object, $value);
     }
 }

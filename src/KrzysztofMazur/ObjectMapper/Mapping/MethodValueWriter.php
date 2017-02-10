@@ -2,8 +2,8 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Exception\MethodNotFoundException;
 use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\ReferenceGetterInterface;
+use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class MethodValueWriter extends AbstractValueWriter
 {
@@ -28,13 +28,6 @@ class MethodValueWriter extends AbstractValueWriter
      */
     protected function writeValue($object, $value)
     {
-        $reflectionClass = $this->getReflectionClass();
-        if (!$reflectionClass->hasMethod($this->methodName)) {
-            throw new MethodNotFoundException($reflectionClass->name, $this->methodName);
-        }
-
-        $method = $reflectionClass->getMethod($this->methodName);
-        $method->setAccessible(true);
-        $method->invokeArgs($object, [$value]);
+        Reflection::getMethod($this->getClassName(), $this->methodName, true)->invokeArgs($object, [$value]);
     }
 }

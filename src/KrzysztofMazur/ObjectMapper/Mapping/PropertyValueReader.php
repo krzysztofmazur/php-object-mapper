@@ -2,7 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
+use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
@@ -30,14 +30,6 @@ class PropertyValueReader extends AbstractValueReader
      */
     protected function readValue($object)
     {
-        $reflectionClass = $this->getReflectionClass();
-        if (!$reflectionClass->hasProperty($this->propertyName)) {
-            throw new PropertyNotFoundException($reflectionClass->name, $this->propertyName);
-        }
-
-        $property = $reflectionClass->getProperty($this->propertyName);
-        $property->setAccessible(true);
-
-        return $property->getValue($object);
+        return Reflection::getProperty($this->getClassName(), $this->propertyName, true)->getValue($object);
     }
 }

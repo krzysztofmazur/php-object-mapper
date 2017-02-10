@@ -55,6 +55,14 @@ abstract class AbstractValueWriter implements ValueWriterInterface
     abstract protected function writeValue($object, $value);
 
     /**
+     * @return string
+     */
+    protected function getClassName()
+    {
+        return $this->className;
+    }
+
+    /**
      * @return \ReflectionClass
      */
     protected function getReflectionClass()
