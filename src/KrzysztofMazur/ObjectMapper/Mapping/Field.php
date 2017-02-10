@@ -2,7 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-class Field
+class Field implements FieldInterface
 {
     /**
      * @var ValueReaderInterface
@@ -25,8 +25,7 @@ class Field
     }
 
     /**
-     * @param mixed $source
-     * @param mixed $target
+     * {@inheritdoc}
      */
     public function map($source, $target)
     {
