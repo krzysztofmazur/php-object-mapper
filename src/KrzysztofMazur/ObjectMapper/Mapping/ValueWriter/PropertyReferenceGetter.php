@@ -29,9 +29,7 @@ class PropertyReferenceGetter extends AbstractReferenceGetter
     {
         $reflectionClass = $this->getReflectionClass();
         if (!$reflectionClass->hasProperty($this->propertyName)) {
-            throw new PropertyNotFoundException(
-                sprintf("Class \"%s\" doesn't have property \"%s\"", $reflectionClass->name, $this->propertyName)
-            );
+            throw new PropertyNotFoundException($reflectionClass->name, $this->propertyName);
         }
 
         $property = $reflectionClass->getProperty($this->propertyName);

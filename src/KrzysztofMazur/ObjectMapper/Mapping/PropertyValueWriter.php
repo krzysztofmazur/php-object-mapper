@@ -30,9 +30,7 @@ class PropertyValueWriter extends AbstractValueWriter
     {
         $reflectionClass = $this->getReflectionClass();
         if (!$reflectionClass->hasProperty($this->propertyName)) {
-            throw new PropertyNotFoundException(
-                sprintf("Class \"%s\" doesn't have property \"%s\"", $reflectionClass->name, $this->propertyName)
-            );
+            throw new PropertyNotFoundException($reflectionClass->name, $this->propertyName);
         }
 
         $property = $this->getReflectionClass()->getProperty($this->propertyName);

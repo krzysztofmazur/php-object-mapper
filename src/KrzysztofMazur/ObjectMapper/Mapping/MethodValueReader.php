@@ -36,9 +36,7 @@ class MethodValueReader extends AbstractValueReader
     {
         $reflectionClass = $this->getReflectionClass();
         if (!$reflectionClass->hasMethod($this->methodName)) {
-            throw new MethodNotFoundException(
-                sprintf("Class \"%s\" doesn't have method \"%s\"", $reflectionClass->name, $this->methodName)
-            );
+            throw new MethodNotFoundException($reflectionClass->name, $this->methodName);
         }
 
         $method = $reflectionClass->getMethod($this->methodName);
