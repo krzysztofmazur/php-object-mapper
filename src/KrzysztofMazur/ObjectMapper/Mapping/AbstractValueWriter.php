@@ -34,7 +34,7 @@ abstract class AbstractValueWriter implements ValueWriterInterface
     public function write($object, $value)
     {
         if (is_null($object)) {
-            throw new NullSourceException("Passed object is null");
+            throw new NullSourceException();
         }
         if (get_class($object) !== $this->className) {
             throw new NotSupportedMappingException(get_class($object));
