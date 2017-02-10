@@ -21,14 +21,14 @@ class Mapping
     private $targetClass;
 
     /**
-     * @var Field[]
+     * @var FieldInterface[]
      */
     private $fields;
 
     /**
-     * @param string  $sourceClass
-     * @param string  $targetClass
-     * @param Field[] $fields
+     * @param string           $sourceClass
+     * @param string           $targetClass
+     * @param FieldInterface[] $fields
      */
     public function __construct($sourceClass, $targetClass, array $fields)
     {
