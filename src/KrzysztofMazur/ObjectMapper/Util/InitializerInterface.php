@@ -1,6 +1,6 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Utils;
+namespace KrzysztofMazur\ObjectMapper\Util;
 
 interface InitializerInterface
 {

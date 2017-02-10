@@ -1,9 +1,9 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Intergrations;
+namespace KrzysztofMazur\ObjectMapper\Intergration;
 
 use Doctrine\Instantiator\InstantiatorInterface;
-use KrzysztofMazur\ObjectMapper\Utils\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
 class DoctrineInstantiatorAdapter implements InitializerInterface
 {
