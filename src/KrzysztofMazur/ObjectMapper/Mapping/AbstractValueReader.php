@@ -36,7 +36,7 @@ abstract class AbstractValueReader implements ValueReaderInterface
             throw new NullSourceException("Passed object is null");
         }
         if (get_class($object) !== $this->className) {
-            throw new NotSupportedMappingException(sprintf("Class \"%s\" is not supported", get_class($object)));
+            throw new NotSupportedMappingException(get_class($object));
         }
         $value = $this->readValue($object);
         if (!is_null($this->next)) {

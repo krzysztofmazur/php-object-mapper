@@ -37,7 +37,7 @@ abstract class AbstractValueWriter implements ValueWriterInterface
             throw new NullSourceException("Passed object is null");
         }
         if (get_class($object) !== $this->className) {
-            throw new NotSupportedMappingException(sprintf("Class \"%s\" is not supported", get_class($object)));
+            throw new NotSupportedMappingException(get_class($object));
         }
         $reference = $object;
         if (!is_null($this->referenceGetter)) {
