@@ -2,7 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping\ValueWriter;
 
-use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
+use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class PropertyReferenceGetter extends AbstractReferenceGetter
 {
@@ -27,14 +27,6 @@ class PropertyReferenceGetter extends AbstractReferenceGetter
      */
     protected function getReferenceInternal($object)
     {
-        $reflectionClass = $this->getReflectionClass();
-        if (!$reflectionClass->hasProperty($this->propertyName)) {
-            throw new PropertyNotFoundException($reflectionClass->name, $this->propertyName);
-        }
-
-        $property = $reflectionClass->getProperty($this->propertyName);
-        $property->setAccessible(true);
-
-        return $property->getValue($object);
+        return Reflection::getProperty($this->getClassName(), $this->propertyName, true)->getValue($object);
     }
 }

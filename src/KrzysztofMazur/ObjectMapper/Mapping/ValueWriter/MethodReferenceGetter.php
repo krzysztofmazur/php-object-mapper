@@ -3,6 +3,7 @@
 namespace KrzysztofMazur\ObjectMapper\Mapping\ValueWriter;
 
 use KrzysztofMazur\ObjectMapper\Exception\MethodNotFoundException;
+use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class MethodReferenceGetter extends AbstractReferenceGetter
 {
@@ -34,14 +35,7 @@ class MethodReferenceGetter extends AbstractReferenceGetter
      */
     protected function getReferenceInternal($object)
     {
-        $reflectionClass = $this->getReflectionClass();
-        if (!$reflectionClass->hasMethod($this->methodName)) {
-            throw new MethodNotFoundException($reflectionClass->name, $this->methodName);
-        }
-
-        $method = $reflectionClass->getMethod($this->methodName);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($object, $this->arguments);
+        return Reflection::getMethod($this->getClassName(), $this->methodName, true)
+            ->invokeArgs($object, $this->arguments);
     }
 }
