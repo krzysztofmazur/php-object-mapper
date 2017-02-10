@@ -23,7 +23,7 @@ class PropertyValueWriterTest extends TestCase
         $writer = new PropertyValueWriter(
             SimpleObject::class,
             'property1',
-            new MethodReferenceGetter(SimpleObject::class, 'getProperty1')
+            new MethodReferenceGetter('getProperty1')
         );
         $object = new SimpleObject();
         $object->setProperty1(new SimpleObject());

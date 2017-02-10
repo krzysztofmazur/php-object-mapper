@@ -2,6 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper;
 
+use KrzysztofMazur\ObjectMapper\Util\Assert;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
 class ObjectMapperBuilder
@@ -27,6 +28,8 @@ class ObjectMapperBuilder
      */
     public function build()
     {
+        Assert::notNull($this->initializer, 'Initializer is mandatory');
+
         return new ObjectMapper($this->initializer);
     }
 }

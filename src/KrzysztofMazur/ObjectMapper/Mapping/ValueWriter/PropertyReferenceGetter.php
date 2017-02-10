@@ -12,13 +12,12 @@ class PropertyReferenceGetter extends AbstractReferenceGetter
     private $propertyName;
 
     /**
-     * @param string                   $className
      * @param string                   $propertyName
      * @param ReferenceGetterInterface $next
      */
-    public function __construct($className, $propertyName, ReferenceGetterInterface $next = null)
+    public function __construct($propertyName, ReferenceGetterInterface $next = null)
     {
-        parent::__construct($className, $next);
+        parent::__construct($next);
         $this->propertyName = $propertyName;
     }
 
@@ -27,6 +26,6 @@ class PropertyReferenceGetter extends AbstractReferenceGetter
      */
     protected function getReferenceInternal($object)
     {
-        return Reflection::getProperty($this->getClassName(), $this->propertyName, true)->getValue($object);
+        return Reflection::getProperty(get_class($object), $this->propertyName, true)->getValue($object);
     }
 }

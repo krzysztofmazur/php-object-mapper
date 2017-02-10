@@ -13,7 +13,7 @@ class MethodReferenceGetterTest extends TestCase
         $obj1 = new SimpleObject();
         $obj2 = new SimpleObject();
         $obj2->setProperty1($obj1);
-        $getter = new MethodReferenceGetter(SimpleObject::class, 'getProperty1');
+        $getter = new MethodReferenceGetter('getProperty1');
 
         $this->assertSame($obj1, $getter->getReference($obj2));
     }
@@ -25,24 +25,8 @@ class MethodReferenceGetterTest extends TestCase
         $obj3 = new SimpleObject();
         $obj2->setProperty1($obj1);
         $obj3->setProperty1($obj2);
-        $getter = new MethodReferenceGetter(
-            SimpleObject::class,
-            'getProperty1',
-            [],
-            new MethodReferenceGetter(SimpleObject::class, 'getProperty1')
-        );
+        $getter = new MethodReferenceGetter('getProperty1', [], new MethodReferenceGetter('getProperty1'));
 
         $this->assertSame($obj1, $getter->getReference($obj3));
-    }
-
-    /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException
-     */
-    public function testNotSupported()
-    {
-        $obj = new SimpleObject();
-        $getter = new MethodReferenceGetter('SomeClass', 'getProperty1');
-
-        $getter->getReference($obj);
     }
 }

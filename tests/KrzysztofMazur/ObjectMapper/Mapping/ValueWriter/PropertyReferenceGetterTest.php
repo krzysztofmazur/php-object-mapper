@@ -13,7 +13,7 @@ class PropertyReferenceGetterTest extends TestCase
         $obj1 = new SimpleObject();
         $obj2 = new SimpleObject();
         $obj2->setProperty1($obj1);
-        $getter = new PropertyReferenceGetter(SimpleObject::class, 'property1');
+        $getter = new PropertyReferenceGetter('property1');
 
         $this->assertSame($obj1, $getter->getReference($obj2));
     }
