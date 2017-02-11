@@ -3,7 +3,6 @@
 namespace KrzysztofMazur\ObjectMapper\Builder;
 
 use KrzysztofMazur\ObjectMapper\Mapping\Mapping;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
 class MappingBuilder
 {
@@ -26,6 +25,14 @@ class MappingBuilder
      * @var FieldFactory
      */
     private $fieldFactory;
+
+    /**
+     * @return MappingBuilder
+     */
+    public static function getInstance()
+    {
+        return new self();
+    }
 
     /**
      * @param FieldFactory $fieldFactory
