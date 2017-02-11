@@ -10,6 +10,7 @@ use KrzysztofMazur\ObjectMapper\Mapping\MethodValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\PropertyValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\PropertyValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\ValueInitializer;
+use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
@@ -22,7 +23,9 @@ class FieldFactoryTest extends TestCase
 
     public function setUp()
     {
-        $this->factory = new FieldFactory();
+        /** @var InitializerInterface $initializer */
+        $initializer = $this->createMock(InitializerInterface::class);
+        $this->factory = new FieldFactory($initializer);
     }
 
     /**
