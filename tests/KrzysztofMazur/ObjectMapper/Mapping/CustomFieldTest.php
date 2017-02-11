@@ -20,6 +20,6 @@ class CustomFieldTest extends TestCase
         $target = new SimpleObject();
         $field->map($source, $target);
 
-        $this->assertEquals('ok', $target->getProperty1());
+        self::assertEquals('ok', $target->getProperty1());
     }
 }

@@ -24,6 +24,6 @@ class DoctrineInstantiatorAdapterTest extends TestCase
     {
         $sample = $this->initializer->initialize(SimpleObject::class);
 
-        $this->assertInstanceOf(SimpleObject::class, $sample);
+        self::assertInstanceOf(SimpleObject::class, $sample);
     }
 }

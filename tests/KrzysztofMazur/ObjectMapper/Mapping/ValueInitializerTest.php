@@ -25,6 +25,6 @@ class ValueInitializerTest extends TestCase
         $valueInitializer = new ValueInitializer(SimpleObject::class, $this->initializerMock);
         $object = $valueInitializer->read(null);
 
-        $this->assertInstanceOf(SimpleObject::class, $object);
+        self::assertInstanceOf(SimpleObject::class, $object);
     }
 }

@@ -11,13 +11,13 @@ class NotSupportedMappingExceptionTest extends TestCase
     {
         $ex = new NotSupportedMappingException("TestClass", null, 0, new \Exception());
 
-        $this->assertEquals("Class \"TestClass\" is not supported", $ex->getMessage());
+        self::assertEquals("Class \"TestClass\" is not supported", $ex->getMessage());
     }
 
     public function testCreateWithTwoClasses()
     {
         $ex = new NotSupportedMappingException("TestClass", "TestClass2", 0, new \Exception());
 
-        $this->assertEquals("Mapping from \"TestClass\" to \"TestClass2\" is not supported", $ex->getMessage());
+        self::assertEquals("Mapping from \"TestClass\" to \"TestClass2\" is not supported", $ex->getMessage());
     }
 }

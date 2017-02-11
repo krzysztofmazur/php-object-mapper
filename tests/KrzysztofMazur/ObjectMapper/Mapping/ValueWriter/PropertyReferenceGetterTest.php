@@ -15,6 +15,6 @@ class PropertyReferenceGetterTest extends TestCase
         $obj2->setProperty1($obj1);
         $getter = new PropertyReferenceGetter('property1');
 
-        $this->assertSame($obj1, $getter->getReference($obj2));
+        self::assertSame($obj1, $getter->getReference($obj2));
     }
 }

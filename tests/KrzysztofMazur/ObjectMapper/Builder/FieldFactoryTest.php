@@ -55,10 +55,10 @@ class FieldFactoryTest extends TestCase
     {
         $field = $this->factory->factory($readText, $writeText);
 
-        $this->assertInstanceOf(Field::class, $field);
+        self::assertInstanceOf(Field::class, $field);
         /* @var Field $field */
-        $this->assertInstanceOf($readerClass, $field->getReader());
-        $this->assertInstanceOf($writerClass, $field->getWriter());
+        self::assertInstanceOf($readerClass, $field->getReader());
+        self::assertInstanceOf($writerClass, $field->getWriter());
     }
 
     public function testUsingCallback()
@@ -70,6 +70,6 @@ class FieldFactoryTest extends TestCase
             'no-matter-text'
         );
 
-        $this->assertInstanceOf(CustomField::class, $field);
+        self::assertInstanceOf(CustomField::class, $field);
     }
 }

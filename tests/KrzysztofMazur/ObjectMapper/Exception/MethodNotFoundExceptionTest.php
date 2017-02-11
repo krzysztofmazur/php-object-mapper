@@ -11,8 +11,8 @@ class MethodNotFoundExceptionTest extends TestCase
     {
         $ex = new MethodNotFoundException('TestClass', 'getSomething', 0, new \Exception());
 
-        $this->assertEquals("Class \"TestClass\" doesn't have method \"getSomething\"", $ex->getMessage());
-        $this->assertEquals("TestClass", $ex->getClassName());
-        $this->assertEquals("getSomething", $ex->getMethodName());
+        self::assertEquals("Class \"TestClass\" doesn't have method \"getSomething\"", $ex->getMessage());
+        self::assertEquals("TestClass", $ex->getClassName());
+        self::assertEquals("getSomething", $ex->getMethodName());
     }
 }

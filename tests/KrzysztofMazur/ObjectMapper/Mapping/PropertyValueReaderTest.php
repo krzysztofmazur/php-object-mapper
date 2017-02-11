@@ -15,7 +15,7 @@ class PropertyValueReaderTest extends TestCase
 
         $reader = new PropertyValueReader('property1');
 
-        $this->assertEquals('ok', $reader->read($obj));
+        self::assertEquals('ok', $reader->read($obj));
     }
 
     public function testNestedSuccess()
@@ -26,7 +26,7 @@ class PropertyValueReaderTest extends TestCase
 
         $reader = new PropertyValueReader('property1', new PropertyValueReader('property1'));
 
-        $this->assertEquals('ok-nested', $reader->read($obj));
+        self::assertEquals('ok-nested', $reader->read($obj));
     }
 
     /**

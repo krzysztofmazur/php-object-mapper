@@ -4,6 +4,9 @@ namespace KrzysztofMazur\ObjectMapper\Util;
 
 class Assert
 {
+    /**
+     * @codeCoverageIgnore
+     */
     private function __construct()
     {
     }

@@ -50,7 +50,7 @@ class MappingTest extends TestCase
         $target = $this->createMock(SimpleObject::class);
         $mapping = new Mapping(get_class($source), get_class($target), []);
 
-        $this->assertTrue($mapping->supports(get_class($source), get_class($target)));
-        $this->assertFalse($mapping->supports('DateTime', 'PDO'));
+        self::assertTrue($mapping->supports(get_class($source), get_class($target)));
+        self::assertFalse($mapping->supports('DateTime', 'PDO'));
     }
 }

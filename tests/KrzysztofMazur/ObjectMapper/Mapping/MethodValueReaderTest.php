@@ -14,7 +14,7 @@ class MethodValueReaderTest extends TestCase
         $obj->setProperty1('ok');
         $reader = new MethodValueReader('getProperty1');
 
-        $this->assertEquals('ok', $reader->read($obj));
+        self::assertEquals('ok', $reader->read($obj));
     }
 
     /**
@@ -33,6 +33,6 @@ class MethodValueReaderTest extends TestCase
         $obj->setProperty1(new \DateTime('2017-01-01 12:00:00', new \DateTimeZone('UTC')));
         $reader = new MethodValueReader('getProperty1', [], new MethodValueReader('format', ['Y-m-d']));
 
-        $this->assertEquals('2017-01-01', $reader->read($obj));
+        self::assertEquals('2017-01-01', $reader->read($obj));
     }
 }

@@ -15,7 +15,7 @@ class MethodReferenceGetterTest extends TestCase
         $obj2->setProperty1($obj1);
         $getter = new MethodReferenceGetter('getProperty1');
 
-        $this->assertSame($obj1, $getter->getReference($obj2));
+        self::assertSame($obj1, $getter->getReference($obj2));
     }
 
     public function testNestedSuccess()
@@ -27,6 +27,6 @@ class MethodReferenceGetterTest extends TestCase
         $obj3->setProperty1($obj2);
         $getter = new MethodReferenceGetter('getProperty1', [], new MethodReferenceGetter('getProperty1'));
 
-        $this->assertSame($obj1, $getter->getReference($obj3));
+        self::assertSame($obj1, $getter->getReference($obj3));
     }
 }

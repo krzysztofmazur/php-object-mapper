@@ -15,7 +15,7 @@ class PropertyValueWriterTest extends TestCase
         $object = new SimpleObject();
         $writer->write($object, 'ok');
 
-        $this->assertEquals('ok', $object->getProperty1());
+        self::assertEquals('ok', $object->getProperty1());
     }
 
     public function testNestedWrite()
@@ -25,6 +25,6 @@ class PropertyValueWriterTest extends TestCase
         $object->setProperty1(new SimpleObject());
         $writer->write($object, 'ok-nested');
 
-        $this->assertEquals('ok-nested', $object->getProperty1()->getProperty1());
+        self::assertEquals('ok-nested', $object->getProperty1()->getProperty1());
     }
 }
