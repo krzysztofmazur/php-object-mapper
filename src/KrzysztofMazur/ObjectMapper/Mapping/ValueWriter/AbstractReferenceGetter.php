@@ -20,6 +20,14 @@ abstract class AbstractReferenceGetter implements ReferenceGetterInterface
     }
 
     /**
+     * @return ReferenceGetterInterface
+     */
+    public function getNext()
+    {
+        return $this->next;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getReference($object)

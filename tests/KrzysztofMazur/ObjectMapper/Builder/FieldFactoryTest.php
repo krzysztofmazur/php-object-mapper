@@ -10,6 +10,7 @@ use KrzysztofMazur\ObjectMapper\Mapping\MethodValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\PropertyValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\PropertyValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\ValueInitializer;
+use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\MethodReferenceGetter;
 use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\PropertyReferenceGetter;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
@@ -78,7 +79,7 @@ class FieldFactoryTest extends TestCase
     {
         $field = $this->factory->factory(
             'property1.property1.getValue()',
-            'property.setSomeVal()'
+            'property.getSomeNext().setSomeVal()'
         );
 
         self::assertInstanceOf(Field::class, $field);
@@ -94,5 +95,7 @@ class FieldFactoryTest extends TestCase
         self::assertInstanceOf(MethodValueWriter::class, $field->getWriter());
         self::assertNotNull($field->getWriter()->getReferenceGetter());
         self::assertInstanceOf(PropertyReferenceGetter::class, $field->getWriter()->getReferenceGetter());
+        self::assertNotNull($field->getWriter()->getReferenceGetter()->getNext());
+        self::assertInstanceOf(MethodReferenceGetter::class, $field->getWriter()->getReferenceGetter()->getNext());
     }
 }
