@@ -21,6 +21,14 @@ abstract class AbstractValueWriter implements ValueWriterInterface
     }
 
     /**
+     * @return ReferenceGetterInterface
+     */
+    public function getReferenceGetter()
+    {
+        return $this->referenceGetter;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function write($object, $value)

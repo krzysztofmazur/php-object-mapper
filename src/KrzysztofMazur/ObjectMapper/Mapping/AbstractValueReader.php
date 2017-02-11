@@ -20,6 +20,14 @@ abstract class AbstractValueReader implements ValueReaderInterface
     }
 
     /**
+     * @return ValueReaderInterface
+     */
+    public function getNext()
+    {
+        return $this->next;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function read($object)
