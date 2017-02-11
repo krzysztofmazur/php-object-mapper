@@ -25,6 +25,22 @@ class Field implements FieldInterface
     }
 
     /**
+     * @return ValueReaderInterface
+     */
+    public function getReader()
+    {
+        return $this->reader;
+    }
+
+    /**
+     * @return ValueWriterInterface
+     */
+    public function getWriter()
+    {
+        return $this->writer;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function map($source, $target)
