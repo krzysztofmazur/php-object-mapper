@@ -28,11 +28,14 @@ class MappingBuilder
     private $fieldFactory;
 
     /**
-     * @param InitializerInterface $initializer
+     * @param FieldFactory $fieldFactory
+     * @return $this
      */
-    public function __construct(InitializerInterface $initializer)
+    public function setFieldFactory($fieldFactory)
     {
-        $this->fieldFactory = new FieldFactory($initializer);
+        $this->fieldFactory = $fieldFactory;
+
+        return $this;
     }
 
     /**
@@ -73,9 +76,10 @@ class MappingBuilder
      */
     public function build()
     {
-        self::assertNotEmpty($this->sourceClass, 'Source class should be set');
-        self::assertNotEmpty($this->targetClass, 'Target class should be set');
-        self::assertNotEmpty($this->fields, 'Field definitions should be set');
+        self::assertNotEmpty($this->sourceClass, 'Source class should be provided');
+        self::assertNotEmpty($this->targetClass, 'Target class should be provided');
+        self::assertNotEmpty($this->fields, 'Field definitions should be provided');
+        self::assertNotEmpty($this->fieldFactory, 'Field factory should be provided');
 
         $fields = [];
         foreach ($this->fields as $target => $source) {
