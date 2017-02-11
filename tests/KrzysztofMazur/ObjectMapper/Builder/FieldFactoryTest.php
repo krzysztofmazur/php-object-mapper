@@ -25,50 +25,40 @@ class FieldFactoryTest extends TestCase
         $this->factory = new FieldFactory();
     }
 
-    public function testFromInitializer()
+    /**
+     * @return array
+     */
+    public function dataForFieldTests()
     {
-        $field = $this->factory->factory(
-            'new '.SimpleObject::class.'()',
-            'property1'
-        );
+        return [
+            ['new '.SimpleObject::class.'()', 'property1', ValueInitializer::class, PropertyValueWriter::class],
+            ['new '.SimpleObject::class.'()', 'setProperty1()', ValueInitializer::class, MethodValueWriter::class],
+            ['property1', 'property1', PropertyValueReader::class, PropertyValueWriter::class],
+            ['property1', 'setProperty1()', PropertyValueReader::class, MethodValueWriter::class],
+            ['getProperty1()', 'property1', MethodValueReader::class, PropertyValueWriter::class],
+            ['getProperty1()', 'setProperty1()', MethodValueReader::class, MethodValueWriter::class],
+        ];
+    }
+
+    /**
+     * @param string $readText
+     * @param string $writeText
+     * @param string $readerClass
+     * @param string $writerClass
+     *
+     * @dataProvider dataForFieldTests
+     */
+    public function testCreatingField($readText, $writeText, $readerClass, $writerClass)
+    {
+        $field = $this->factory->factory($readText, $writeText);
 
         $this->assertInstanceOf(Field::class, $field);
         /* @var Field $field */
-        $this->assertInstanceOf(ValueInitializer::class, $field->getReader());
-        $this->assertInstanceOf(PropertyValueWriter::class, $field->getWriter());
+        $this->assertInstanceOf($readerClass, $field->getReader());
+        $this->assertInstanceOf($writerClass, $field->getWriter());
     }
 
-    public function testFromProperty()
-    {
-        $field = $this->factory->factory('property1', 'property1');
-
-        $this->assertInstanceOf(Field::class, $field);
-        /* @var Field $field */
-        $this->assertInstanceOf(PropertyValueReader::class, $field->getReader());
-        $this->assertInstanceOf(PropertyValueWriter::class, $field->getWriter());
-    }
-
-    public function testFromMethod()
-    {
-        $field = $this->factory->factory('getProperty1()', 'property1');
-
-        $this->assertInstanceOf(Field::class, $field);
-        /* @var Field $field */
-        $this->assertInstanceOf(MethodValueReader::class, $field->getReader());
-        $this->assertInstanceOf(PropertyValueWriter::class, $field->getWriter());
-    }
-
-    public function testToMethod()
-    {
-        $field = $this->factory->factory('getProperty1()', 'setProperty1()');
-
-        $this->assertInstanceOf(Field::class, $field);
-        /* @var Field $field */
-        $this->assertInstanceOf(MethodValueReader::class, $field->getReader());
-        $this->assertInstanceOf(MethodValueWriter::class, $field->getWriter());
-    }
-
-    public function testFromCallback()
+    public function testUsingCallback()
     {
         $field = $this->factory->factory(
             function ($source, $target) {
