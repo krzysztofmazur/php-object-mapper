@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\KrzysztofMazur\ObjectMapper\Builder;
+namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Builder\FieldFactory;
-use KrzysztofMazur\ObjectMapper\Builder\MappingBuilder;
+use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
+use KrzysztofMazur\ObjectMapper\Mapping\MappingBuilder;
 use KrzysztofMazur\ObjectMapper\Mapping\Field;
 use KrzysztofMazur\ObjectMapper\Mapping\Mapping;
 use PHPUnit\Framework\TestCase;

@@ -1,7 +1,8 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Builder;
+namespace KrzysztofMazur\ObjectMapper\Mapping;
 
+use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
 use KrzysztofMazur\ObjectMapper\Mapping\Mapping;
 
 class MappingBuilder
@@ -28,6 +29,8 @@ class MappingBuilder
 
     /**
      * @return MappingBuilder
+     *
+     * @codeCoverageIgnore
      */
     public static function getInstance()
     {

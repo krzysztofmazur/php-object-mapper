@@ -2,8 +2,8 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Builder\FieldFactory;
-use KrzysztofMazur\ObjectMapper\Builder\MappingBuilder;
+use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
+use KrzysztofMazur\ObjectMapper\Mapping\MappingBuilder;
 use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
 
 class MappingRepository implements MappingRepositoryInterface
@@ -21,6 +21,7 @@ class MappingRepository implements MappingRepositoryInterface
     {
         $this->mappings = [];
         foreach ($config as $mappingConfiguration) {
+            self::checkMappingConfiguration($mappingConfiguration);
             $mapId = isset($mappingConfiguration['mapId']) ? $mappingConfiguration['mapId'] : null;
             if (!array_key_exists($mapId, $this->mappings)) {
                 $this->mappings[$mapId] = [];
@@ -50,5 +51,27 @@ class MappingRepository implements MappingRepositoryInterface
         }
 
         throw new NotSupportedMappingException($sourceClass, $targetClass);
+    }
+
+    /**
+     * @param array $configuration
+     */
+    private static function checkMappingConfiguration(array $configuration)
+    {
+        self::assertArrayKeyExists('fields', $configuration, "Missing \"fields\" key in mapping configuration");
+        self::assertArrayKeyExists('from', $configuration, "Missing \"from\" key in mapping configuration");
+        self::assertArrayKeyExists('to', $configuration, "Missing \"to\" key in mapping configuration");
+    }
+
+    /**
+     * @param string $key
+     * @param array  $array
+     * @param string $message
+     */
+    private static function assertArrayKeyExists($key, $array, $message)
+    {
+        if (!isset($array[$key])) {
+            throw new \InvalidArgumentException($message);
+        }
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\KrzysztofMazur\ObjectMapper\Builder;
+namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Builder\FieldFactory;
+use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
 use KrzysztofMazur\ObjectMapper\Mapping\CustomField;
 use KrzysztofMazur\ObjectMapper\Mapping\Field;
 use KrzysztofMazur\ObjectMapper\Mapping\MethodValueReader;

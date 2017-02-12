@@ -1,6 +1,6 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Builder;
+namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Mapping\CustomField;
 use KrzysztofMazur\ObjectMapper\Mapping\Field;
