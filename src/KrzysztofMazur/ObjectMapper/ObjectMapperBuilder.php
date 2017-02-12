@@ -18,6 +18,16 @@ class ObjectMapperBuilder
     private $repository;
 
     /**
+     * @return ObjectMapperBuilder
+     *
+     * @codeCoverageIgnore
+     */
+    public static function getInstance()
+    {
+        return new self();
+    }
+
+    /**
      * @param InitializerInterface $initializer
      * @return $this
      */
