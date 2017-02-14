@@ -33,7 +33,7 @@ class MappingBuilder
     private $fieldFactory;
 
     /**
-     * @var FieldsAutoDetectorInterface
+     * @var FieldsMatchmakerInterface
      */
     private $fieldsAutoDetector;
 
@@ -59,10 +59,10 @@ class MappingBuilder
     }
 
     /**
-     * @param FieldsAutoDetectorInterface $fieldsAutoDetector
+     * @param FieldsMatchmakerInterface $fieldsAutoDetector
      * @return $this
      */
-    public function setFieldsAutoDetector(FieldsAutoDetectorInterface $fieldsAutoDetector)
+    public function setFieldsAutoDetector(FieldsMatchmakerInterface $fieldsAutoDetector)
     {
         $this->fieldsAutoDetector = $fieldsAutoDetector;
 

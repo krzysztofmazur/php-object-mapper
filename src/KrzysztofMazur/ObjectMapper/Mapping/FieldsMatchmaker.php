@@ -4,9 +4,22 @@ namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
-class FieldsAutoDetector implements FieldsAutoDetectorInterface
+class FieldsMatchmaker implements FieldsMatchmakerInterface
 {
     const GETTER_PATTERN = '/^(is|get)(.*)$/';
+
+    /**
+     * @var PropertyNameConverterInterface
+     */
+    private $converter;
+
+    /**
+     * @param PropertyNameConverterInterface $converter
+     */
+    public function __construct(PropertyNameConverterInterface $converter)
+    {
+        $this->converter = $converter;
+    }
 
     /**
      * {@inheritdoc}
@@ -49,18 +62,9 @@ class FieldsAutoDetector implements FieldsAutoDetectorInterface
     {
         $result = [];
         foreach ($getters as $getter) {
-            $result[$this->parseGetterMethodName($getter)] = $getter;
+            $result[$this->converter->getPropertyName($getter)] = $getter;
         }
 
         return $result;
-    }
-
-    /**
-     * @param string $getter
-     * @return string
-     */
-    private function parseGetterMethodName($getter)
-    {
-
     }
 }

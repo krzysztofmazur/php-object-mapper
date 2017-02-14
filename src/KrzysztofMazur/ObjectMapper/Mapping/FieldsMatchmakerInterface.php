@@ -2,7 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-interface FieldsAutoDetectorInterface
+interface FieldsMatchmakerInterface
 {
     /**
      * @param string $sourceClass
