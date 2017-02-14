@@ -23,9 +23,19 @@ class MappingBuilder
     private $fields;
 
     /**
+     * @var bool
+     */
+    private $fieldsAutoDetect = false;
+
+    /**
      * @var FieldFactory
      */
     private $fieldFactory;
+
+    /**
+     * @var FieldsAutoDetectorInterface
+     */
+    private $fieldsAutoDetector;
 
     /**
      * @return MappingBuilder
@@ -41,9 +51,20 @@ class MappingBuilder
      * @param FieldFactory $fieldFactory
      * @return $this
      */
-    public function setFieldFactory($fieldFactory)
+    public function setFieldFactory(FieldFactory $fieldFactory)
     {
         $this->fieldFactory = $fieldFactory;
+
+        return $this;
+    }
+
+    /**
+     * @param FieldsAutoDetectorInterface $fieldsAutoDetector
+     * @return $this
+     */
+    public function setFieldsAutoDetector(FieldsAutoDetectorInterface $fieldsAutoDetector)
+    {
+        $this->fieldsAutoDetector = $fieldsAutoDetector;
 
         return $this;
     }
@@ -74,9 +95,20 @@ class MappingBuilder
      * @param array $fields
      * @return $this
      */
-    public function setFields($fields)
+    public function setFields(array $fields)
     {
         $this->fields = $fields;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $fieldsAutoDetect
+     * @return $this
+     */
+    public function setFieldsAutoDetect($fieldsAutoDetect)
+    {
+        $this->fieldsAutoDetect = $fieldsAutoDetect;
 
         return $this;
     }
@@ -92,6 +124,10 @@ class MappingBuilder
         self::assertNotEmpty($this->fieldFactory, 'Field factory should be provided');
 
         $fields = [];
+        if ($this->fieldsAutoDetect) {
+            self::assertNotEmpty($this->fieldsAutoDetector, 'Fields auto detector should be provided');
+            $fields = $this->fieldsAutoDetector->detect($this->sourceClass, $this->targetClass);
+        }
         foreach ($this->fields as $target => $source) {
             $fields[] = $this->fieldFactory->factory($source, $target);
         }
