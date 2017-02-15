@@ -24,7 +24,7 @@ class FieldsMatchmaker implements FieldsMatchmakerInterface
     /**
      * {@inheritdoc}
      */
-    public function detect($sourceClass, $targetClass)
+    public function match($sourceClass, $targetClass)
     {
         $fields = [];
         $targetClassProperties = Reflection::getPropertyNames($targetClass);

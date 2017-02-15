@@ -9,5 +9,5 @@ interface FieldsMatchmakerInterface
      * @param string $targetClass
      * @return array
      */
-    public function detect($sourceClass, $targetClass);
+    public function match($sourceClass, $targetClass);
 }

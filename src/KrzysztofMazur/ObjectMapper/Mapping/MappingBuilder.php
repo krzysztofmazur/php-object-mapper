@@ -25,7 +25,7 @@ class MappingBuilder
     /**
      * @var bool
      */
-    private $fieldsAutoDetect = false;
+    private $fieldsAutoMatch = false;
 
     /**
      * @var FieldFactory
@@ -35,7 +35,7 @@ class MappingBuilder
     /**
      * @var FieldsMatchmakerInterface
      */
-    private $fieldsAutoDetector;
+    private $fieldsMatchmaker;
 
     /**
      * @return MappingBuilder
@@ -59,12 +59,12 @@ class MappingBuilder
     }
 
     /**
-     * @param FieldsMatchmakerInterface $fieldsAutoDetector
+     * @param FieldsMatchmakerInterface $fieldsMatchmaker
      * @return $this
      */
-    public function setFieldsAutoDetector(FieldsMatchmakerInterface $fieldsAutoDetector)
+    public function setFieldsMatchmaker(FieldsMatchmakerInterface $fieldsMatchmaker)
     {
-        $this->fieldsAutoDetector = $fieldsAutoDetector;
+        $this->fieldsMatchmaker = $fieldsMatchmaker;
 
         return $this;
     }
@@ -103,12 +103,12 @@ class MappingBuilder
     }
 
     /**
-     * @param bool $fieldsAutoDetect
+     * @param bool $fieldsAutoMatch
      * @return $this
      */
-    public function setFieldsAutoDetect($fieldsAutoDetect)
+    public function setFieldsAutoMatch($fieldsAutoMatch)
     {
-        $this->fieldsAutoDetect = $fieldsAutoDetect;
+        $this->fieldsAutoMatch = $fieldsAutoMatch;
 
         return $this;
     }
@@ -120,13 +120,15 @@ class MappingBuilder
     {
         self::assertNotEmpty($this->sourceClass, 'Source class should be provided');
         self::assertNotEmpty($this->targetClass, 'Target class should be provided');
-        self::assertNotEmpty($this->fields, 'Field definitions should be provided');
         self::assertNotEmpty($this->fieldFactory, 'Field factory should be provided');
 
         $fields = [];
-        if ($this->fieldsAutoDetect) {
-            self::assertNotEmpty($this->fieldsAutoDetector, 'Fields auto detector should be provided');
-            $fields = $this->fieldsAutoDetector->detect($this->sourceClass, $this->targetClass);
+        if ($this->fieldsAutoMatch) {
+            self::assertNotEmpty($this->fieldsMatchmaker, 'Fields auto detector should be provided');
+            $fields = $this->fieldsMatchmaker->match($this->sourceClass, $this->targetClass);
+        }
+        if (empty($fields)) {
+            self::assertNotEmpty($this->fields, 'Field definitions should be provided');
         }
         foreach ($this->fields as $target => $source) {
             $fields[] = $this->fieldFactory->factory($source, $target);
