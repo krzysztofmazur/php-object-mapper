@@ -36,7 +36,7 @@ class FieldsMatchmaker implements FieldsMatchmakerInterface
         }
         $parsedGetters = $this->parseGetters($this->getClassGetters($sourceClass));
         foreach ($parsedGetters as $property => $getter) {
-            if (array_key_exists($property, $fields)) {
+            if (isset($fields[$property])) {
                 continue;
             }
             if (in_array($property, $targetClassProperties)) {

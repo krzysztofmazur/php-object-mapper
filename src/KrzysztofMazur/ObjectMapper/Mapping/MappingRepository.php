@@ -24,10 +24,10 @@ class MappingRepository implements MappingRepositoryInterface
         foreach ($config as $mappingConfiguration) {
             self::checkMappingConfiguration($mappingConfiguration);
             $mapId = isset($mappingConfiguration['mapId']) ? $mappingConfiguration['mapId'] : null;
-            if (!array_key_exists($mapId, $this->mappings)) {
+            if (!isset($this->mappings[$mapId])) {
                 $this->mappings[$mapId] = [];
             }
-            $auto = array_key_exists('auto', $mappingConfiguration) ? $mappingConfiguration['auto'] : false;
+            $auto = isset($mappingConfiguration['auto']) ? $mappingConfiguration['auto'] : false;
             $this->mappings[$mapId][] = MappingBuilder::getInstance()
                 ->setFields($mappingConfiguration['fields'])
                 ->setSourceClass($mappingConfiguration['from'])
@@ -44,7 +44,7 @@ class MappingRepository implements MappingRepositoryInterface
      */
     public function getMapping($sourceClass, $targetClass, $mapId = null)
     {
-        if (!array_key_exists($mapId, $this->mappings)) {
+        if (!isset($this->mappings[$mapId])) {
             throw new NotSupportedMappingException($sourceClass, $targetClass);
         }
         foreach ($this->mappings[$mapId] as $mapping) {
