@@ -4,6 +4,7 @@ namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
 use KrzysztofMazur\ObjectMapper\Mapping\FieldInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\FieldsMatchmakerInterface;
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepository;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
@@ -21,7 +22,11 @@ class MappingRepositoryTest extends TestCase
                 'to' => SimpleObject::class,
             ],
         ];
-        new MappingRepository($config, $this->createMock(FieldFactory::class));
+        new MappingRepository(
+            $config,
+            $this->createMock(FieldFactory::class),
+            $this->createMock(FieldsMatchmakerInterface::class)
+        );
     }
 
     private function getRepository()
@@ -49,7 +54,7 @@ class MappingRepositoryTest extends TestCase
             ->with($this->equalTo('property2'), $this->equalTo('property2'))
             ->willReturn($this->createMock(FieldInterface::class));
 
-        return new MappingRepository($config, $fieldFactoryMock);
+        return new MappingRepository($config, $fieldFactoryMock, $this->createMock(FieldsMatchmakerInterface::class));
     }
 
     public function testSuccess()

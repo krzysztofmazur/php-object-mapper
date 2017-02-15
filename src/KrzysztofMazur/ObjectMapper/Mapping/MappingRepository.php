@@ -14,10 +14,11 @@ class MappingRepository implements MappingRepositoryInterface
     private $mappings;
 
     /**
-     * @param array        $config
-     * @param FieldFactory $fieldFactory
+     * @param array                     $config
+     * @param FieldFactory              $fieldFactory
+     * @param FieldsMatchmakerInterface $fieldsMatchmaker
      */
-    public function __construct(array $config, FieldFactory $fieldFactory)
+    public function __construct(array $config, FieldFactory $fieldFactory, FieldsMatchmakerInterface $fieldsMatchmaker)
     {
         $this->mappings = [];
         foreach ($config as $mappingConfiguration) {
@@ -26,11 +27,14 @@ class MappingRepository implements MappingRepositoryInterface
             if (!array_key_exists($mapId, $this->mappings)) {
                 $this->mappings[$mapId] = [];
             }
+            $auto = array_key_exists('auto', $mappingConfiguration) ? $mappingConfiguration['auto'] : false;
             $this->mappings[$mapId][] = MappingBuilder::getInstance()
                 ->setFields($mappingConfiguration['fields'])
                 ->setSourceClass($mappingConfiguration['from'])
                 ->setTargetClass($mappingConfiguration['to'])
                 ->setFieldFactory($fieldFactory)
+                ->setFieldsAutoMatch($auto)
+                ->setFieldsMatchmaker($fieldsMatchmaker)
                 ->build();
         }
     }
