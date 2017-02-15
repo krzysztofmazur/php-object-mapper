@@ -62,7 +62,11 @@ class MappingRepository implements MappingRepositoryInterface
      */
     private static function checkMappingConfiguration(array $configuration)
     {
-        self::assertArrayKeyExists('fields', $configuration, "Missing \"fields\" key in mapping configuration");
+        self::assertOneOfArrayKeysExist(
+            ['fields', 'auto'],
+            $configuration,
+            "\"fields\" or \"auto\" property is required"
+        );
         self::assertArrayKeyExists('from', $configuration, "Missing \"from\" key in mapping configuration");
         self::assertArrayKeyExists('to', $configuration, "Missing \"to\" key in mapping configuration");
     }
@@ -77,5 +81,21 @@ class MappingRepository implements MappingRepositoryInterface
         if (!isset($array[$key])) {
             throw new \InvalidArgumentException($message);
         }
+    }
+
+    /**
+     * @param string[] $keys
+     * @param array    $array
+     * @param string   $message
+     */
+    private static function assertOneOfArrayKeysExist($keys, $array, $message)
+    {
+        foreach ($keys as $key) {
+            if (isset($array[$key])) {
+                return;
+            }
+        }
+
+        throw new \InvalidArgumentException($message);
     }
 }

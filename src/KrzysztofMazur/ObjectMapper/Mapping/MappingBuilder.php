@@ -125,7 +125,10 @@ class MappingBuilder
         $fields = [];
         if ($this->fieldsAutoMatch) {
             self::assertNotEmpty($this->fieldsMatchmaker, 'Fields auto detector should be provided');
-            $fields = $this->fieldsMatchmaker->match($this->sourceClass, $this->targetClass);
+            $this->fields = array_merge(
+                $this->fieldsMatchmaker->match($this->sourceClass, $this->targetClass),
+                $this->fields
+            );
         }
         if (empty($fields)) {
             self::assertNotEmpty($this->fields, 'Field definitions should be provided');
