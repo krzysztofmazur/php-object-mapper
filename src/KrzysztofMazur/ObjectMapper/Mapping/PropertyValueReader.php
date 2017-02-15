@@ -29,6 +29,6 @@ class PropertyValueReader extends AbstractValueReader
      */
     protected function readValue($object)
     {
-        return Reflection::getProperty(get_class($object), $this->propertyName, true)->getValue($object);
+        return Reflection::getProperty(get_class($object), $this->propertyName)->getValue($object);
     }
 }

@@ -33,7 +33,7 @@ class MethodValueReader extends AbstractValueReader
      */
     protected function readValue($object)
     {
-        return Reflection::getMethod(get_class($object), $this->methodName, true)
+        return Reflection::getMethod(get_class($object), $this->methodName)
             ->invokeArgs($object, $this->arguments);
     }
 }

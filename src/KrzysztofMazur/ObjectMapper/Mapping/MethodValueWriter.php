@@ -27,6 +27,6 @@ class MethodValueWriter extends AbstractValueWriter
      */
     protected function writeValue($object, $value)
     {
-        Reflection::getMethod(get_class($object), $this->methodName, true)->invokeArgs($object, [$value]);
+        Reflection::getMethod(get_class($object), $this->methodName)->invokeArgs($object, [$value]);
     }
 }

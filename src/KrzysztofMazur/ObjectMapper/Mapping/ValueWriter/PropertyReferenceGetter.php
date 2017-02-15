@@ -26,6 +26,6 @@ class PropertyReferenceGetter extends AbstractReferenceGetter
      */
     protected function getReferenceInternal($object)
     {
-        return Reflection::getProperty(get_class($object), $this->propertyName, true)->getValue($object);
+        return Reflection::getProperty(get_class($object), $this->propertyName)->getValue($object);
     }
 }

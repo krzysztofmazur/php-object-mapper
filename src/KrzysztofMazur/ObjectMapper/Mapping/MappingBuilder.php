@@ -2,9 +2,6 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
-use KrzysztofMazur\ObjectMapper\Mapping\Mapping;
-
 class MappingBuilder
 {
     /**

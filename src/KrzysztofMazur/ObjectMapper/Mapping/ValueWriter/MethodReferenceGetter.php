@@ -33,7 +33,7 @@ class MethodReferenceGetter extends AbstractReferenceGetter
      */
     protected function getReferenceInternal($object)
     {
-        return Reflection::getMethod(get_class($object), $this->methodName, true)
+        return Reflection::getMethod(get_class($object), $this->methodName)
             ->invokeArgs($object, $this->arguments);
     }
 }

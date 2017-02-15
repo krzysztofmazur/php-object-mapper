@@ -8,6 +8,31 @@ use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
 class Reflection
 {
     /**
+     * @var array
+     */
+    private static $reflectionClasses = [];
+
+    /**
+     * @var array
+     */
+    private static $reflectionProperties = [];
+
+    /**
+     * @var array
+     */
+    private static $reflectionMethods = [];
+
+    /**
+     * @var array
+     */
+    private static $classProperties = [];
+
+    /**
+     * @var array
+     */
+    private static $classMethods = [];
+
+    /**
      * @codeCoverageIgnore
      */
     private function __construct()
@@ -20,49 +45,55 @@ class Reflection
      */
     public static function getReflectionClass($className)
     {
-        return new \ReflectionClass($className);
+        if (!isset(self::$reflectionClasses[$className])) {
+            self::$reflectionClasses[$className] = new \ReflectionClass($className);
+        }
+
+        return self::$reflectionClasses[$className];
     }
 
     /**
      * @param string $className
      * @param string $propertyName
-     * @param bool   $setAccessible
      * @return \ReflectionProperty
      * @throws PropertyNotFoundException
      */
-    public static function getProperty($className, $propertyName, $setAccessible = false)
+    public static function getProperty($className, $propertyName)
     {
-        $reflectionClass = self::getReflectionClass($className);
-        if (!$reflectionClass->hasProperty($propertyName)) {
-            throw new PropertyNotFoundException($className, $propertyName);
-        }
-        $property = $reflectionClass->getProperty($propertyName);
-        if ($setAccessible) {
+        $key = sprintf("%s->%s", $className, $propertyName);
+        if (!isset(self::$reflectionProperties[$key])) {
+            $reflectionClass = self::getReflectionClass($className);
+            if (!$reflectionClass->hasProperty($propertyName)) {
+                throw new PropertyNotFoundException($className, $propertyName);
+            }
+            $property = $reflectionClass->getProperty($propertyName);
             $property->setAccessible(true);
+            self::$reflectionProperties[$key] = $property;
         }
 
-        return $property;
+        return self::$reflectionProperties[$key];
     }
 
     /**
      * @param string $className
      * @param string $methodName
-     * @param bool   $setAccessible
      * @return \ReflectionMethod
      * @throws MethodNotFoundException
      */
-    public static function getMethod($className, $methodName, $setAccessible = false)
+    public static function getMethod($className, $methodName)
     {
-        $reflectionClass = self::getReflectionClass($className);
-        if (!$reflectionClass->hasMethod($methodName)) {
-            throw new MethodNotFoundException($className, $methodName);
-        }
-        $method = $reflectionClass->getMethod($methodName);
-        if ($setAccessible) {
+        $key = sprintf("%s->%s", $className, $methodName);
+        if (!isset(self::$reflectionMethods[$key])) {
+            $reflectionClass = self::getReflectionClass($className);
+            if (!$reflectionClass->hasMethod($methodName)) {
+                throw new MethodNotFoundException($className, $methodName);
+            }
+            $method = $reflectionClass->getMethod($methodName);
             $method->setAccessible(true);
+            self::$reflectionMethods[$key] = $method;
         }
 
-        return $method;
+        return self::$reflectionMethods[$key];
     }
 
     /**
@@ -71,12 +102,16 @@ class Reflection
      */
     public static function getMethodNames($className)
     {
-        return array_map(
-            function (\ReflectionMethod $method) {
-                return $method->getName();
-            },
-            self::getReflectionClass($className)->getMethods()
-        );
+        if (!isset(self::$classMethods[$className])) {
+            self::$classMethods[$className] = array_map(
+                function (\ReflectionMethod $method) {
+                    return $method->getName();
+                },
+                self::getReflectionClass($className)->getMethods()
+            );
+        }
+
+        return self::$classMethods[$className];
     }
 
     /**
@@ -85,11 +120,15 @@ class Reflection
      */
     public static function getPropertyNames($className)
     {
-        return array_map(
-            function (\ReflectionProperty $property) {
-                return $property->getName();
-            },
-            self::getReflectionClass($className)->getProperties()
-        );
+        if (!isset(self::$classProperties[$className])) {
+            self::$classProperties[$className] = array_map(
+                function (\ReflectionProperty $property) {
+                    return $property->getName();
+                },
+                self::getReflectionClass($className)->getProperties()
+            );
+        }
+
+        return self::$classProperties[$className];
     }
 }
