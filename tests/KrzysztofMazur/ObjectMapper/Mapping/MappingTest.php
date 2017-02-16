@@ -21,7 +21,8 @@ class MappingTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException
+     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\MappingException
+     * @expectedExceptionMessage Not supported object types
      */
     public function testNotSupported()
     {

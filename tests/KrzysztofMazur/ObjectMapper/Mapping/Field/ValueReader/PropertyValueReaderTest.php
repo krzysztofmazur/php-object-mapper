@@ -30,7 +30,7 @@ class PropertyValueReaderTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException
+     * @expectedException \ReflectionException
      */
     public function testMethodNotFound()
     {
@@ -40,7 +40,7 @@ class PropertyValueReaderTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NullReferenceException
+     * @expectedException \InvalidArgumentException
      */
     public function testNullObject()
     {

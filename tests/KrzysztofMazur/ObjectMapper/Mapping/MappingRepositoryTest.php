@@ -65,7 +65,8 @@ class MappingRepositoryTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException
+     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\MappingException
+     * @expectedExceptionMessage Mapping from "DateTime" to "stdClass" is not supported
      */
     public function testNotSupported()
     {
@@ -73,7 +74,8 @@ class MappingRepositoryTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException
+     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\MappingException
+     * @expectedExceptionMessage Mapping from "TestFixtures\SimpleObject" to "TestFixtures\SimpleObject" is not supported
      */
     public function testNotSupportedMapId()
     {

@@ -2,7 +2,6 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
-use KrzysztofMazur\ObjectMapper\Exception\NullReferenceException;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 
 abstract class AbstractValueWriter implements ValueWriterInterface
@@ -34,7 +33,7 @@ abstract class AbstractValueWriter implements ValueWriterInterface
     public function write($object, $value)
     {
         if (is_null($object)) {
-            throw new NullReferenceException();
+            throw new \InvalidArgumentException("Unexpected null value");
         }
         $reference = $object;
         if (!is_null($this->valueReader)) {

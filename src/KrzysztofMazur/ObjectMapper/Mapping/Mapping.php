@@ -3,7 +3,6 @@
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\MappingException;
-use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldInterface;
 
 /**
@@ -56,7 +55,7 @@ class Mapping
     public function map($source, $target)
     {
         if (!$this->supports(get_class($source), get_class($target))) {
-            throw new NotSupportedMappingException(get_class($source), get_class($target));
+            throw new MappingException("Not supported object types");
         }
 
         foreach ($this->fields as $field) {

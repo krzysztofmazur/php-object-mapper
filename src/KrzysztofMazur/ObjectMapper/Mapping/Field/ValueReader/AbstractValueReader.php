@@ -2,8 +2,6 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader;
 
-use KrzysztofMazur\ObjectMapper\Exception\NullReferenceException;
-
 abstract class AbstractValueReader implements ValueReaderInterface
 {
     /**
@@ -33,7 +31,7 @@ abstract class AbstractValueReader implements ValueReaderInterface
     public function read($object)
     {
         if (is_null($object)) {
-            throw new NullReferenceException();
+            throw new \InvalidArgumentException("Unexpected null value");
         }
         $value = $this->readValue($object);
         if (!is_null($this->next)) {

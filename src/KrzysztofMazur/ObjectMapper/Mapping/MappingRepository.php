@@ -2,9 +2,9 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
+use KrzysztofMazur\ObjectMapper\Exception\MappingException;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldFactory;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldsMatchmakerInterface;
-use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
 
 class MappingRepository implements MappingRepositoryInterface
 {
@@ -45,7 +45,7 @@ class MappingRepository implements MappingRepositoryInterface
     public function getMapping($sourceClass, $targetClass, $mapId = null)
     {
         if (!isset($this->mappings[$mapId])) {
-            throw new NotSupportedMappingException($sourceClass, $targetClass);
+            throw MappingException::createNotSupportedMapping($sourceClass, $targetClass);
         }
         foreach ($this->mappings[$mapId] as $mapping) {
             /** @var Mapping $mapping */
@@ -54,7 +54,7 @@ class MappingRepository implements MappingRepositoryInterface
             }
         }
 
-        throw new NotSupportedMappingException($sourceClass, $targetClass);
+        throw MappingException::createNotSupportedMapping($sourceClass, $targetClass);
     }
 
     /**

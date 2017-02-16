@@ -2,7 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
+use KrzysztofMazur\ObjectMapper\Exception\MappingException;
 
 interface MappingRepositoryInterface
 {
@@ -11,7 +11,7 @@ interface MappingRepositoryInterface
      * @param string $targetClass
      * @param string $mapId
      * @return Mapping
-     * @throws NotSupportedMappingException
+     * @throws MappingException
      */
     public function getMapping($sourceClass, $targetClass, $mapId = null);
 }

@@ -30,7 +30,7 @@ class MethodValueWriterTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\NullReferenceException
+     * @expectedException \InvalidArgumentException
      */
     public function testNullReference()
     {

@@ -18,7 +18,7 @@ class MethodValueReaderTest extends TestCase
     }
 
     /**
-     * @expectedException \KrzysztofMazur\ObjectMapper\Exception\MethodNotFoundException
+     * @expectedException \ReflectionException
      */
     public function testMethodNotFound()
     {

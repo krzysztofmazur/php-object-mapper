@@ -2,9 +2,6 @@
 
 namespace KrzysztofMazur\ObjectMapper\Util;
 
-use KrzysztofMazur\ObjectMapper\Exception\MethodNotFoundException;
-use KrzysztofMazur\ObjectMapper\Exception\PropertyNotFoundException;
-
 class Reflection
 {
     /**
@@ -56,17 +53,13 @@ class Reflection
      * @param string $className
      * @param string $propertyName
      * @return \ReflectionProperty
-     * @throws PropertyNotFoundException
+     * @throws \ReflectionException
      */
     public static function getProperty($className, $propertyName)
     {
         $key = sprintf("%s->%s", $className, $propertyName);
         if (!isset(self::$reflectionProperties[$key])) {
-            $reflectionClass = self::getReflectionClass($className);
-            if (!$reflectionClass->hasProperty($propertyName)) {
-                throw new PropertyNotFoundException($className, $propertyName);
-            }
-            $property = $reflectionClass->getProperty($propertyName);
+            $property = self::getReflectionClass($className)->getProperty($propertyName);
             $property->setAccessible(true);
             self::$reflectionProperties[$key] = $property;
         }
@@ -78,17 +71,13 @@ class Reflection
      * @param string $className
      * @param string $methodName
      * @return \ReflectionMethod
-     * @throws MethodNotFoundException
+     * @throws \ReflectionException
      */
     public static function getMethod($className, $methodName)
     {
         $key = sprintf("%s->%s", $className, $methodName);
         if (!isset(self::$reflectionMethods[$key])) {
-            $reflectionClass = self::getReflectionClass($className);
-            if (!$reflectionClass->hasMethod($methodName)) {
-                throw new MethodNotFoundException($className, $methodName);
-            }
-            $method = $reflectionClass->getMethod($methodName);
+            $method = self::getReflectionClass($className)->getMethod($methodName);
             $method->setAccessible(true);
             self::$reflectionMethods[$key] = $method;
         }
