@@ -3,28 +3,29 @@
 namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
 use KrzysztofMazur\ObjectMapper\Exception\NullReferenceException;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 
 abstract class AbstractValueWriter implements ValueWriterInterface
 {
     /**
-     * @var ReferenceGetterInterface
+     * @var ValueReaderInterface
      */
-    protected $referenceGetter;
+    protected $valueReader;
 
     /**
-     * @param ReferenceGetterInterface $referenceGetter
+     * @param ValueReaderInterface $valueReader
      */
-    public function __construct(ReferenceGetterInterface $referenceGetter = null)
+    public function __construct(ValueReaderInterface $valueReader = null)
     {
-        $this->referenceGetter = $referenceGetter;
+        $this->valueReader = $valueReader;
     }
 
     /**
-     * @return ReferenceGetterInterface
+     * @return ValueReaderInterface
      */
-    public function getReferenceGetter()
+    public function getValueReader()
     {
-        return $this->referenceGetter;
+        return $this->valueReader;
     }
 
     /**
@@ -36,8 +37,8 @@ abstract class AbstractValueWriter implements ValueWriterInterface
             throw new NullReferenceException();
         }
         $reference = $object;
-        if (!is_null($this->referenceGetter)) {
-            $reference = $this->referenceGetter->getReference($reference);
+        if (!is_null($this->valueReader)) {
+            $reference = $this->valueReader->read($reference);
         }
 
         $this->writeValue($reference, $value);

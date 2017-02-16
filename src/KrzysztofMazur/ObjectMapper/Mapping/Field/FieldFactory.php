@@ -8,8 +8,6 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\PropertyValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInitializer;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
-use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodReferenceGetter;
-use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyReferenceGetter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\ValueWriterInterface;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
@@ -80,9 +78,9 @@ class FieldFactory
         $last = null;
         foreach (array_reverse($parts) as $part) {
             if (preg_match(self::METHOD_PATTERN, $part, $matches)) {
-                $last = new MethodReferenceGetter($matches[1], $this->extractArguments($matches[2]), $last);
+                $last = new MethodValueReader($matches[1], $this->extractArguments($matches[2]), $last);
             } else {
-                $last = new PropertyReferenceGetter($part, $last);
+                $last = new PropertyValueReader($part, $last);
             }
         }
 

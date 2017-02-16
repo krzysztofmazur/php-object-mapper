@@ -93,10 +93,10 @@ class FieldFactoryTest extends TestCase
 
         self::assertNotNull($field->getWriter());
         self::assertInstanceOf(MethodValueWriter::class, $field->getWriter());
-        self::assertNotNull($field->getWriter()->getReferenceGetter());
-        self::assertInstanceOf(PropertyReferenceGetter::class, $field->getWriter()->getReferenceGetter());
-        self::assertNotNull($field->getWriter()->getReferenceGetter()->getNext());
-        self::assertInstanceOf(MethodReferenceGetter::class, $field->getWriter()->getReferenceGetter()->getNext());
+        self::assertNotNull($field->getWriter()->getValueReader());
+        self::assertInstanceOf(PropertyValueReader::class, $field->getWriter()->getValueReader());
+        self::assertNotNull($field->getWriter()->getValueReader()->getNext());
+        self::assertInstanceOf(MethodValueReader::class, $field->getWriter()->getValueReader()->getNext());
     }
 
     public function testWithArgs()
@@ -113,6 +113,6 @@ class FieldFactoryTest extends TestCase
 
         self::assertNotNull($field->getWriter());
         self::assertInstanceOf(PropertyValueWriter::class, $field->getWriter());
-        self::assertNull($field->getWriter()->getReferenceGetter());
+        self::assertNull($field->getWriter()->getValueReader());
     }
 }

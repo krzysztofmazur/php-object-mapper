@@ -2,6 +2,7 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\MethodValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodReferenceGetter;
 use PHPUnit\Framework\TestCase;
@@ -20,7 +21,7 @@ class PropertyValueWriterTest extends TestCase
 
     public function testNestedWrite()
     {
-        $writer = new PropertyValueWriter('property1', new MethodReferenceGetter('getProperty1'));
+        $writer = new PropertyValueWriter('property1', new MethodValueReader('getProperty1'));
         $object = new SimpleObject();
         $object->setProperty1(new SimpleObject());
         $writer->write($object, 'ok-nested');

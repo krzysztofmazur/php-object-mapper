@@ -2,6 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class MethodValueWriter extends AbstractValueWriter
@@ -12,12 +13,12 @@ class MethodValueWriter extends AbstractValueWriter
     private $methodName;
 
     /**
-     * @param string                   $methodName
-     * @param ReferenceGetterInterface $referenceGetter
+     * @param string               $methodName
+     * @param ValueReaderInterface $valueReader
      */
-    public function __construct($methodName, ReferenceGetterInterface $referenceGetter = null)
+    public function __construct($methodName, ValueReaderInterface $valueReader = null)
     {
-        parent::__construct($referenceGetter);
+        parent::__construct($valueReader);
         $this->methodName = $methodName;
     }
 

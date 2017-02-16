@@ -2,6 +2,7 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class PropertyValueWriter extends AbstractValueWriter
@@ -12,12 +13,12 @@ class PropertyValueWriter extends AbstractValueWriter
     private $propertyName;
 
     /**
-     * @param string                   $propertyName
-     * @param ReferenceGetterInterface $referenceGetter
+     * @param string               $propertyName
+     * @param ValueReaderInterface $valueReader
      */
-    public function __construct($propertyName, ReferenceGetterInterface $referenceGetter = null)
+    public function __construct($propertyName, ValueReaderInterface $valueReader = null)
     {
-        parent::__construct($referenceGetter);
+        parent::__construct($valueReader);
         $this->propertyName = $propertyName;
     }
 
