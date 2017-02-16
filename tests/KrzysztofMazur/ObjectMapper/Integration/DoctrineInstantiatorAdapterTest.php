@@ -3,7 +3,7 @@
 namespace Tests\KrzysztofMazur\ObjectMapper\Integration;
 
 use Doctrine\Instantiator\Instantiator;
-use KrzysztofMazur\ObjectMapper\Intergration\DoctrineInstantiatorAdapter;
+use KrzysztofMazur\ObjectMapper\Integration\DoctrineInstantiatorAdapter;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;

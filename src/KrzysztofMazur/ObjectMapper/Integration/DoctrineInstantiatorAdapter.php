@@ -1,6 +1,6 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Intergration;
+namespace KrzysztofMazur\ObjectMapper\Integration;
 
 use Doctrine\Instantiator\InstantiatorInterface;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
