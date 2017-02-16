@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
+namespace Tests\KrzysztofMazur\ObjectMapper\Util;
 
 use KrzysztofMazur\ObjectMapper\Util\PropertyNameConverter;
 use KrzysztofMazur\ObjectMapper\Util\PropertyNameConverterInterface;

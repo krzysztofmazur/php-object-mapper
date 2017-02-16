@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
+namespace Tests\KrzysztofMazur\ObjectMapper\Mapping\Field;
 
 use KrzysztofMazur\ObjectMapper\Mapping\Field\CustomField;
 use PHPUnit\Framework\TestCase;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
+namespace Tests\KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader;
 
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\PropertyValueReader;
 use PHPUnit\Framework\TestCase;

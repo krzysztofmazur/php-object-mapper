@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
+namespace Tests\KrzysztofMazur\ObjectMapper\Mapping\Field;
 
 use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldFactory;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\CustomField;
@@ -10,8 +10,6 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\PropertyValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInitializer;
-use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodReferenceGetter;
-use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyReferenceGetter;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
