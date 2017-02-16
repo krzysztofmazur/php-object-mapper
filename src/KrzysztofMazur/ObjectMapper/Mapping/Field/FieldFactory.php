@@ -59,7 +59,7 @@ class FieldFactory
             $last = null;
             foreach (array_reverse($parts) as $part) {
                 if (preg_match(self::METHOD_PATTERN, $part, $matches)) {
-                    $last = new MethodValueReader($matches[1], $this->extractArguments($matches), $last);
+                    $last = new MethodValueReader($matches[1], $this->extractArguments($matches[2]), $last);
                 } else {
                     $last = new PropertyValueReader($part, $last);
                 }
@@ -80,7 +80,7 @@ class FieldFactory
         $last = null;
         foreach (array_reverse($parts) as $part) {
             if (preg_match(self::METHOD_PATTERN, $part, $matches)) {
-                $last = new MethodReferenceGetter($matches[1], $this->extractArguments($matches), $last);
+                $last = new MethodReferenceGetter($matches[1], $this->extractArguments($matches[2]), $last);
             } else {
                 $last = new PropertyReferenceGetter($part, $last);
             }
@@ -98,8 +98,8 @@ class FieldFactory
     private function extractArguments($matches)
     {
         $args = [];
-        if (!empty($matches[2])) {
-            preg_match_all(self::METHOD_ARGS_PATTERN, $matches[2], $argMatches);
+        if (!empty($matches)) {
+            preg_match_all(self::METHOD_ARGS_PATTERN, $matches, $argMatches);
             foreach ($argMatches[0] as $match) {
                 $args[] = substr($match, 1, -1);
             }

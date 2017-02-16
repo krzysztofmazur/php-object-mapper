@@ -2,8 +2,8 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\PropertyNameConverter;
-use KrzysztofMazur\ObjectMapper\Mapping\PropertyNameConverterInterface;
+use KrzysztofMazur\ObjectMapper\Util\PropertyNameConverter;
+use KrzysztofMazur\ObjectMapper\Util\PropertyNameConverterInterface;
 use PHPUnit\Framework\TestCase;
 
 class PropertyNameConverterTest extends TestCase
