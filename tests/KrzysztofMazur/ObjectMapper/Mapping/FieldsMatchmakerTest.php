@@ -2,7 +2,7 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\FieldsMatchmaker;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldsMatchmaker;
 use KrzysztofMazur\ObjectMapper\Mapping\PropertyNameConverter;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\TestSourceObject;

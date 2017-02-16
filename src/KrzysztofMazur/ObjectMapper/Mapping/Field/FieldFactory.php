@@ -1,19 +1,16 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field;
 
-use KrzysztofMazur\ObjectMapper\Mapping\CustomField;
-use KrzysztofMazur\ObjectMapper\Mapping\Field;
-use KrzysztofMazur\ObjectMapper\Mapping\FieldInterface;
-use KrzysztofMazur\ObjectMapper\Mapping\MethodValueReader;
-use KrzysztofMazur\ObjectMapper\Mapping\MethodValueWriter;
-use KrzysztofMazur\ObjectMapper\Mapping\PropertyValueReader;
-use KrzysztofMazur\ObjectMapper\Mapping\PropertyValueWriter;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueInitializer;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueReaderInterface;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\MethodReferenceGetter;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\PropertyReferenceGetter;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriterInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\MethodValueReader;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodValueWriter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\PropertyValueReader;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyValueWriter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInitializer;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodReferenceGetter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyReferenceGetter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\ValueWriterInterface;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
 class FieldFactory

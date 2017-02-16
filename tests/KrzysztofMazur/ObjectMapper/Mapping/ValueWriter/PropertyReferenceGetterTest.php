@@ -2,7 +2,7 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping\ValueWriter;
 
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\PropertyReferenceGetter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyReferenceGetter;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 

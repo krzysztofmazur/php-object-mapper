@@ -12,7 +12,7 @@ interface PropertyNameConverterInterface
 
     /**
      * @param string $propertyName
-     * @param bool $boolean
+     * @param bool   $boolean
      * @return string
      */
     public function getGetterName($propertyName, $boolean = false);

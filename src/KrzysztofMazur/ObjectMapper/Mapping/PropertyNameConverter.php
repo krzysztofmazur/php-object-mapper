@@ -17,22 +17,6 @@ class PropertyNameConverter implements PropertyNameConverterInterface
     }
 
     /**
-     * @param string $methodName
-     */
-    private function checkMethodName($methodName)
-    {
-        if ($methodName === null || $methodName === '') {
-            throw new \InvalidArgumentException("Invalid accessor name");
-        }
-        if (in_array($methodName, self::ACCESSOR_PREFIXES)) {
-            throw new \InvalidArgumentException("Invalid accessor name");
-        }
-        if (!$this->hasOneOfPrefixes(self::ACCESSOR_PREFIXES, $methodName)) {
-            throw new \InvalidArgumentException("Invalid accessor name");
-        }
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getGetterName($propertyName, $boolean = false)
@@ -50,6 +34,22 @@ class PropertyNameConverter implements PropertyNameConverterInterface
         $this->checkPropertyName($propertyName);
 
         return sprintf("set%s", ucfirst($propertyName));
+    }
+
+    /**
+     * @param string $methodName
+     */
+    private function checkMethodName($methodName)
+    {
+        if ($methodName === null || $methodName === '') {
+            throw new \InvalidArgumentException("Invalid accessor name");
+        }
+        if (in_array($methodName, self::ACCESSOR_PREFIXES)) {
+            throw new \InvalidArgumentException("Invalid accessor name");
+        }
+        if (!$this->hasOneOfPrefixes(self::ACCESSOR_PREFIXES, $methodName)) {
+            throw new \InvalidArgumentException("Invalid accessor name");
+        }
     }
 
     private function checkPropertyName($propertyName)

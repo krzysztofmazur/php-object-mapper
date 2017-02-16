@@ -1,6 +1,9 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field;
+
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\ValueWriterInterface;
 
 class Field implements FieldInterface
 {

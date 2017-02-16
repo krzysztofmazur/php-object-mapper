@@ -2,7 +2,7 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\Field;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\Field;
 use KrzysztofMazur\ObjectMapper\Mapping\Mapping;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;

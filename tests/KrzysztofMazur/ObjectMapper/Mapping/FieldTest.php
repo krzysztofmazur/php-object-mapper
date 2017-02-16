@@ -2,9 +2,9 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\Field;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueReaderInterface;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriterInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\Field;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\ValueWriterInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 

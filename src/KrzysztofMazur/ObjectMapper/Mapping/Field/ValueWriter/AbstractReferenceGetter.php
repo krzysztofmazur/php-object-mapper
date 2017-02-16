@@ -1,8 +1,6 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping\ValueWriter;
-
-use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
 abstract class AbstractReferenceGetter implements ReferenceGetterInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>

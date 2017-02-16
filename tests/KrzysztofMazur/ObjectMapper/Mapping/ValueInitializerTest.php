@@ -2,7 +2,7 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\ValueInitializer;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInitializer;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;

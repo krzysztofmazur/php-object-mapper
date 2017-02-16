@@ -1,6 +1,6 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping\ValueWriter;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
 interface ReferenceGetterInterface
 {

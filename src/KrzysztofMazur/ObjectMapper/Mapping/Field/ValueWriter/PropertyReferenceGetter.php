@@ -1,6 +1,6 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping\ValueWriter;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 

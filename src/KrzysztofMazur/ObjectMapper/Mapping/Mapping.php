@@ -4,6 +4,7 @@ namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\MappingException;
 use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldInterface;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>

@@ -1,7 +1,8 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field;
 
+use KrzysztofMazur\ObjectMapper\Mapping\PropertyNameConverterInterface;
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class FieldsMatchmaker implements FieldsMatchmakerInterface

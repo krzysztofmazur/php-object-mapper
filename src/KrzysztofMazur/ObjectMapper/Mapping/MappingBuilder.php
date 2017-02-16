@@ -2,6 +2,9 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldFactory;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldsMatchmakerInterface;
+
 class MappingBuilder
 {
     /**

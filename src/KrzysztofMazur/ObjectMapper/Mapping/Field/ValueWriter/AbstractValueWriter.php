@@ -1,9 +1,8 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
 use KrzysztofMazur\ObjectMapper\Exception\NullReferenceException;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\ReferenceGetterInterface;
 
 abstract class AbstractValueWriter implements ValueWriterInterface
 {

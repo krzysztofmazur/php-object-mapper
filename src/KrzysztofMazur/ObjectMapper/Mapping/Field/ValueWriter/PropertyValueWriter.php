@@ -1,8 +1,7 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper\Mapping;
+namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\ReferenceGetterInterface;
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
 class PropertyValueWriter extends AbstractValueWriter

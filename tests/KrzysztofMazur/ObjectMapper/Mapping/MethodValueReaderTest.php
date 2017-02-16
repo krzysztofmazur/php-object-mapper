@@ -2,7 +2,7 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\MethodValueReader;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\MethodValueReader;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 

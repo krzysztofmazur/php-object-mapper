@@ -2,8 +2,8 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
-use KrzysztofMazur\ObjectMapper\Mapping\MappingBuilder;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldFactory;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldsMatchmakerInterface;
 use KrzysztofMazur\ObjectMapper\Exception\NotSupportedMappingException;
 
 class MappingRepository implements MappingRepositoryInterface

@@ -2,16 +2,16 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
-use KrzysztofMazur\ObjectMapper\Mapping\CustomField;
-use KrzysztofMazur\ObjectMapper\Mapping\Field;
-use KrzysztofMazur\ObjectMapper\Mapping\MethodValueReader;
-use KrzysztofMazur\ObjectMapper\Mapping\MethodValueWriter;
-use KrzysztofMazur\ObjectMapper\Mapping\PropertyValueReader;
-use KrzysztofMazur\ObjectMapper\Mapping\PropertyValueWriter;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueInitializer;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\MethodReferenceGetter;
-use KrzysztofMazur\ObjectMapper\Mapping\ValueWriter\PropertyReferenceGetter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldFactory;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\CustomField;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\Field;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\MethodValueReader;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodValueWriter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\PropertyValueReader;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyValueWriter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInitializer;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodReferenceGetter;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyReferenceGetter;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;

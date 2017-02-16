@@ -2,9 +2,9 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\FieldFactory;
-use KrzysztofMazur\ObjectMapper\Mapping\FieldInterface;
-use KrzysztofMazur\ObjectMapper\Mapping\FieldsMatchmakerInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldFactory;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldsMatchmakerInterface;
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepository;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;

@@ -2,7 +2,7 @@
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
-use KrzysztofMazur\ObjectMapper\Mapping\CustomField;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\CustomField;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
