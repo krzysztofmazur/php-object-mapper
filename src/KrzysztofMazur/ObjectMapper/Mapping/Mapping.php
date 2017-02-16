@@ -55,7 +55,7 @@ class Mapping
     public function map($source, $target)
     {
         if (!$this->supports(get_class($source), get_class($target))) {
-            throw new MappingException("Not supported object types");
+            throw MappingException::createNotSupportedObjectTypes();
         }
 
         foreach ($this->fields as $field) {
