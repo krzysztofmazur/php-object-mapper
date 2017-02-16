@@ -98,4 +98,21 @@ class FieldFactoryTest extends TestCase
         self::assertNotNull($field->getWriter()->getReferenceGetter()->getNext());
         self::assertInstanceOf(MethodReferenceGetter::class, $field->getWriter()->getReferenceGetter()->getNext());
     }
+
+    public function testWithArgs()
+    {
+        $field = $this->factory->factory('format("Y-m-d")', 'date');
+
+        self::assertInstanceOf(Field::class, $field);
+        /* @var Field $field */
+        self::assertNotNull($field->getReader());
+        self::assertInstanceOf(MethodValueReader::class, $field->getReader());
+        self::assertNull($field->getReader()->getNext());
+        $date = \DateTime::createFromFormat("Y-m-d H:i:s", "2011-02-02 12:30:00");
+        self::assertEquals("2011-02-02", $field->getReader()->read($date));
+
+        self::assertNotNull($field->getWriter());
+        self::assertInstanceOf(PropertyValueWriter::class, $field->getWriter());
+        self::assertNull($field->getWriter()->getReferenceGetter());
+    }
 }

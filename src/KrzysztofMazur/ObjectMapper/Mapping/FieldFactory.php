@@ -19,7 +19,8 @@ use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 class FieldFactory
 {
     const CONSTRUCTOR_PATTERN = '/^new\ (.*)\(\)$/';
-    const METHOD_PATTERN = '/^(\w*)\(\)$/';
+    const METHOD_PATTERN = '/^(\w*)\((.*)\)$/';
+    const METHOD_ARGS_PATTERN = '/(["\'])(?:(?=(\\\\?))\2.)*?\1/';
 
     /**
      * @var InitializerInterface
@@ -61,7 +62,7 @@ class FieldFactory
             $last = null;
             foreach (array_reverse($parts) as $part) {
                 if (preg_match(self::METHOD_PATTERN, $part, $matches)) {
-                    $last = new MethodValueReader($matches[1], [], $last);
+                    $last = new MethodValueReader($matches[1], $this->extractArguments($matches), $last);
                 } else {
                     $last = new PropertyValueReader($part, $last);
                 }
@@ -82,7 +83,7 @@ class FieldFactory
         $last = null;
         foreach (array_reverse($parts) as $part) {
             if (preg_match(self::METHOD_PATTERN, $part, $matches)) {
-                $last = new MethodReferenceGetter($matches[1], [], $last);
+                $last = new MethodReferenceGetter($matches[1], $this->extractArguments($matches), $last);
             } else {
                 $last = new PropertyReferenceGetter($part, $last);
             }
@@ -91,5 +92,22 @@ class FieldFactory
         return preg_match(self::METHOD_PATTERN, $writePart, $matches)
             ? new MethodValueWriter($matches[1], $last)
             : new PropertyValueWriter($writePart, $last);
+    }
+
+    /**
+     * @param array $matches
+     * @return array
+     */
+    private function extractArguments($matches)
+    {
+        $args = [];
+        if (!empty($matches[2])) {
+            preg_match_all(self::METHOD_ARGS_PATTERN, $matches[2], $argMatches);
+            foreach ($argMatches[0] as $match) {
+                $args[] = substr($match, 1, -1);
+            }
+        }
+
+        return $args;
     }
 }
