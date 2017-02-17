@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\KrzysztofMazur\ObjectMapper;
+namespace Tests\KrzysztofMazur\ObjectMapper\Builder;
 
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepository;
 use KrzysztofMazur\ObjectMapper\ObjectMapper;
-use KrzysztofMazur\ObjectMapper\ObjectMapperBuilder;
+use KrzysztofMazur\ObjectMapper\Builder\ObjectMapperBuilder;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +18,7 @@ class ObjectMapperBuilderTest extends TestCase
         $initializer = $this->createMock(InitializerInterface::class);
         $repository = $this->createMock(MappingRepository::class);
 
-        $mapper = ObjectMapperBuilder::getInstance()
+        $mapper = ObjectMapperBuilder::create()
             ->setInitializer($initializer)
             ->setRepository($repository)
             ->build();
@@ -31,6 +31,6 @@ class ObjectMapperBuilderTest extends TestCase
      */
     public function testFail()
     {
-        ObjectMapperBuilder::getInstance()->build();
+        ObjectMapperBuilder::create()->build();
     }
 }

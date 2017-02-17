@@ -1,14 +1,15 @@
 <?php
 
-namespace KrzysztofMazur\ObjectMapper;
+namespace KrzysztofMazur\ObjectMapper\Builder;
 
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepositoryInterface;
+use KrzysztofMazur\ObjectMapper\ObjectMapper;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
  */
-class ObjectMapperBuilder
+class ObjectMapperBuilder extends AbstractBuilder
 {
     /**
      * @var InitializerInterface
@@ -22,10 +23,8 @@ class ObjectMapperBuilder
 
     /**
      * @return ObjectMapperBuilder
-     *
-     * @codeCoverageIgnore
      */
-    public static function getInstance()
+    public static function create()
     {
         return new self();
     }
@@ -61,16 +60,5 @@ class ObjectMapperBuilder
         self::assertNotNull($this->repository, 'Mapping repository should be provided');
 
         return new ObjectMapper($this->initializer, $this->repository);
-    }
-
-    /**
-     * @param mixed  $arg
-     * @param string $message
-     */
-    private static function assertNotNull($arg, $message)
-    {
-        if (is_null($arg)) {
-            throw new \InvalidArgumentException($message);
-        }
     }
 }
