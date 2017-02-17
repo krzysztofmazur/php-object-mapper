@@ -1,4 +1,10 @@
 <?php
+/*
+ * This file is part of php-object-mapper.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
@@ -6,7 +12,7 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\MethodValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodReferenceGetter;
 use PHPUnit\Framework\TestCase;
-use TestFixtures\SimpleObject;
+use Tests\KrzysztofMazur\ObjectMapper\Fixtures\SimpleObject;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>

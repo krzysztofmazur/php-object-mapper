@@ -6,16 +6,20 @@
  * file that was distributed with this source code.
  */
 
-namespace KrzysztofMazur\ObjectMapper\Util;
+namespace Tests\KrzysztofMazur\ObjectMapper\Fixtures;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
  */
-interface InitializerInterface
+class TestTargetObject
 {
     /**
-     * @param string $className
-     * @return mixed
+     * @var int
      */
-    public function initialize($className);
+    private $area;
+
+    /**
+     * @var int
+     */
+    private $width;
 }

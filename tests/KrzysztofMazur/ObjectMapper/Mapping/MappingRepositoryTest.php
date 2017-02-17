@@ -1,4 +1,10 @@
 <?php
+/*
+ * This file is part of php-object-mapper.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Tests\KrzysztofMazur\ObjectMapper\Mapping;
 
@@ -7,7 +13,7 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldInterface;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldsMatchmakerInterface;
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepository;
 use PHPUnit\Framework\TestCase;
-use TestFixtures\SimpleObject;
+use Tests\KrzysztofMazur\ObjectMapper\Fixtures\SimpleObject;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
@@ -95,7 +101,7 @@ class MappingRepositoryTest extends TestCase
 
     /**
      * @expectedException \KrzysztofMazur\ObjectMapper\Exception\MappingException
-     * @expectedExceptionMessage Mapping from "TestFixtures\SimpleObject" to "TestFixtures\SimpleObject" is not supported
+     * @expectedExceptionMessage Mapping from "Tests\KrzysztofMazur\ObjectMapper\Fixtures\SimpleObject" to "Tests\KrzysztofMazur\ObjectMapper\Fixtures\SimpleObject" is not supported
      */
     public function testNotSupportedMapId()
     {
