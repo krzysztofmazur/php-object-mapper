@@ -25,7 +25,6 @@ class CustomField implements FieldInterface
      */
     public function map($source, $target)
     {
-        $callback = $this->callback;
-        $callback($source, $target);
+        call_user_func_array($this->callback, [$source, $target]);
     }
 }

@@ -56,17 +56,7 @@ class FieldFactory
         if (preg_match(self::CONSTRUCTOR_PATTERN, $source, $matches)) {
             return new ValueInitializer($matches[1], $this->initializer);
         } else {
-            $parts = explode('.', $source);
-            $last = null;
-            foreach (array_reverse($parts) as $part) {
-                if (preg_match(self::METHOD_PATTERN, $part, $matches)) {
-                    $last = new MethodValueReader($matches[1], $this->extractArguments($matches[2]), $last);
-                } else {
-                    $last = new PropertyValueReader($part, $last);
-                }
-            }
-
-            return $last;
+            return $this->getValueReaders(explode('.', $source));
         }
     }
 
@@ -78,6 +68,19 @@ class FieldFactory
     {
         $parts = explode('.', $target);
         $writePart = array_pop($parts);
+        $last = $this->getValueReaders($parts);
+
+        return preg_match(self::METHOD_PATTERN, $writePart, $matches)
+            ? new MethodValueWriter($matches[1], $last)
+            : new PropertyValueWriter($writePart, $last);
+    }
+
+    /**
+     * @param array $parts
+     * @return ValueReaderInterface|null
+     */
+    private function getValueReaders(array $parts)
+    {
         $last = null;
         foreach (array_reverse($parts) as $part) {
             if (preg_match(self::METHOD_PATTERN, $part, $matches)) {
@@ -87,9 +90,7 @@ class FieldFactory
             }
         }
 
-        return preg_match(self::METHOD_PATTERN, $writePart, $matches)
-            ? new MethodValueWriter($matches[1], $last)
-            : new PropertyValueWriter($writePart, $last);
+        return $last;
     }
 
     /**

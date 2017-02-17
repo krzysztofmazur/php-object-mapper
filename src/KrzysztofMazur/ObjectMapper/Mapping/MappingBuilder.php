@@ -133,11 +133,11 @@ class MappingBuilder
                 $this->fields
             );
         }
-        if (empty($fields)) {
-            self::assertNotEmpty($this->fields, 'Field definitions should be provided');
-        }
         foreach ($this->fields as $target => $source) {
             $fields[] = $this->fieldFactory->factory($source, $target);
+        }
+        if (empty($fields)) {
+            self::assertNotEmpty($this->fields, 'Field definitions should be provided');
         }
 
         return new Mapping($this->sourceClass, $this->targetClass, $fields);

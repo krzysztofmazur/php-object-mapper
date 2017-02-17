@@ -51,7 +51,6 @@ class Field implements FieldInterface
      */
     public function map($source, $target)
     {
-        $value = $this->reader->read($source);
-        $this->writer->write($target, $value);
+        $this->writer->write($target, $this->reader->read($source));
     }
 }

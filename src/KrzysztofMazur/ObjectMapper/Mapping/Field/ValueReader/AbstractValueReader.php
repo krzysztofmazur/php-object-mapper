@@ -33,11 +33,11 @@ abstract class AbstractValueReader implements ValueReaderInterface
      */
     public function read($object)
     {
-        if (is_null($object)) {
+        if ($object === null) {
             throw new \InvalidArgumentException("Unexpected null value");
         }
         $value = $this->readValue($object);
-        if (!is_null($this->next)) {
+        if ($this->next !== null) {
             $value = $this->next->read($value);
         }
 

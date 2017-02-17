@@ -35,11 +35,11 @@ abstract class AbstractValueWriter implements ValueWriterInterface
      */
     public function write($object, $value)
     {
-        if (is_null($object)) {
+        if ($object === null) {
             throw new \InvalidArgumentException("Unexpected null value");
         }
         $reference = $object;
-        if (!is_null($this->valueReader)) {
+        if ($this->valueReader !== null) {
             $reference = $this->valueReader->read($reference);
         }
 
