@@ -5,6 +5,9 @@ namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class MethodValueWriter extends AbstractValueWriter
 {
     /**

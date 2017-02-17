@@ -5,6 +5,9 @@ namespace KrzysztofMazur\ObjectMapper;
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepositoryInterface;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class ObjectMapperBuilder
 {
     /**

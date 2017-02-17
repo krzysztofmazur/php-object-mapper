@@ -8,6 +8,9 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodReferenceGetter;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class MethodValueWriterTest extends TestCase
 {
     public function testWriteSuccess()

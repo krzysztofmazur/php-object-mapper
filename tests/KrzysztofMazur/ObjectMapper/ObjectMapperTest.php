@@ -9,6 +9,9 @@ use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class ObjectMapperTest extends TestCase
 {
     public function testMapSuccess()

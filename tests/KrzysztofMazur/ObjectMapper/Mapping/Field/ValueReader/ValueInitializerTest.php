@@ -7,6 +7,9 @@ use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class ValueInitializerTest extends TestCase
 {
     /**
@@ -14,6 +17,9 @@ class ValueInitializerTest extends TestCase
      */
     private $initializerMock;
 
+    /**
+     * {@inheritdoc}
+     */
     public function setUp()
     {
         $this->initializerMock = $this->createMock(InitializerInterface::class);

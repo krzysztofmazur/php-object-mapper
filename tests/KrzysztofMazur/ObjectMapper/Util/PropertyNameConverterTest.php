@@ -6,6 +6,9 @@ use KrzysztofMazur\ObjectMapper\Util\PropertyNameConverter;
 use KrzysztofMazur\ObjectMapper\Util\PropertyNameConverterInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class PropertyNameConverterTest extends TestCase
 {
     /**
@@ -13,6 +16,9 @@ class PropertyNameConverterTest extends TestCase
      */
     private $converter;
 
+    /**
+     * {@inheritdoc}
+     */
     public function setUp()
     {
         $this->converter = new PropertyNameConverter();

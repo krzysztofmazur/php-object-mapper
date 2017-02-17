@@ -2,6 +2,9 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 interface ValueWriterInterface
 {
     /**

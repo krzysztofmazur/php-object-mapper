@@ -5,6 +5,9 @@ namespace KrzysztofMazur\ObjectMapper\Mapping\Field;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\ValueWriterInterface;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class Field implements FieldInterface
 {
     /**

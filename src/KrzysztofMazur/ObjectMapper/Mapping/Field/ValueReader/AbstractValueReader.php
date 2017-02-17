@@ -2,6 +2,9 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 abstract class AbstractValueReader implements ValueReaderInterface
 {
     /**

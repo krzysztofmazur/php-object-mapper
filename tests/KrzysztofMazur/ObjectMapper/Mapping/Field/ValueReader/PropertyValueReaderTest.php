@@ -6,6 +6,9 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\PropertyValueReader;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class PropertyValueReaderTest extends TestCase
 {
     public function testSuccess()

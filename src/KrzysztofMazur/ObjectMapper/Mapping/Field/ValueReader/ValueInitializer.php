@@ -4,6 +4,9 @@ namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader;
 
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class ValueInitializer implements ValueReaderInterface
 {
     /**

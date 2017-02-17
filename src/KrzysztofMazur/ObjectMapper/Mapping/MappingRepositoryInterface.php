@@ -4,6 +4,9 @@ namespace KrzysztofMazur\ObjectMapper\Mapping;
 
 use KrzysztofMazur\ObjectMapper\Exception\MappingException;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 interface MappingRepositoryInterface
 {
     /**

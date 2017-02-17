@@ -5,6 +5,9 @@ namespace KrzysztofMazur\ObjectMapper\Integration;
 use Doctrine\Instantiator\InstantiatorInterface;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class DoctrineInstantiatorAdapter implements InitializerInterface
 {
     /**

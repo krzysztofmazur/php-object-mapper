@@ -2,6 +2,9 @@
 
 namespace KrzysztofMazur\ObjectMapper\Util;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class PropertyNameConverter implements PropertyNameConverterInterface
 {
     const ACCESSOR_PREFIXES = ['get', 'is', 'set'];

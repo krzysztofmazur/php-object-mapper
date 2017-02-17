@@ -6,6 +6,9 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\MethodValueReader;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class MethodValueReaderTest extends TestCase
 {
     public function testReadSuccess()

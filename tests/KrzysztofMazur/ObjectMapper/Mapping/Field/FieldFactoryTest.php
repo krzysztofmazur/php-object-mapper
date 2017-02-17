@@ -14,6 +14,9 @@ use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class FieldFactoryTest extends TestCase
 {
     /**
@@ -21,6 +24,9 @@ class FieldFactoryTest extends TestCase
      */
     private $factory;
 
+    /**
+     * {@inheritdoc}
+     */
     public function setUp()
     {
         /** @var InitializerInterface $initializer */

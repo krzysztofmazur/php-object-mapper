@@ -5,6 +5,9 @@ namespace KrzysztofMazur\ObjectMapper\Mapping\Field;
 use KrzysztofMazur\ObjectMapper\Util\PropertyNameConverterInterface;
 use KrzysztofMazur\ObjectMapper\Util\Reflection;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class FieldsMatchmaker implements FieldsMatchmakerInterface
 {
     const GETTER_PATTERN = '/^(is|get)(.*)$/';

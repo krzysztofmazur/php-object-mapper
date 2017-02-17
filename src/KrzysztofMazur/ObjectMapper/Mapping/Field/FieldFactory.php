@@ -11,6 +11,9 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\ValueWriterInterface;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class FieldFactory
 {
     const CONSTRUCTOR_PATTERN = '/^new\ (.*)\(\)$/';

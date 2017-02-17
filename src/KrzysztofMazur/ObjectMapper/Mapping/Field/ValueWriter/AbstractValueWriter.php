@@ -4,6 +4,9 @@ namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter;
 
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 abstract class AbstractValueWriter implements ValueWriterInterface
 {
     /**

@@ -6,6 +6,9 @@ use KrzysztofMazur\ObjectMapper\Util\Reflection;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class ReflectionTest extends TestCase
 {
     public function testGetReflectionClassSuccess()

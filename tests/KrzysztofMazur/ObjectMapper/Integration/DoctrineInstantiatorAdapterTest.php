@@ -8,6 +8,9 @@ use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class DoctrineInstantiatorAdapterTest extends TestCase
 {
     /**
@@ -15,6 +18,9 @@ class DoctrineInstantiatorAdapterTest extends TestCase
      */
     private $initializer;
 
+    /**
+     * {@inheritdoc}
+     */
     public function setUp()
     {
         $this->initializer = new DoctrineInstantiatorAdapter(new Instantiator());

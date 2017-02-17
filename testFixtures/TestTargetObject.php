@@ -2,6 +2,9 @@
 
 namespace TestFixtures;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class TestTargetObject
 {
     /**

@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 use TestFixtures\TestSourceObject;
 use TestFixtures\TestTargetObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class FieldsMatchmakerTest extends TestCase
 {
     public function testMatchSuccess()

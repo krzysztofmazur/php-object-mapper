@@ -8,6 +8,9 @@ use KrzysztofMazur\ObjectMapper\ObjectMapperBuilder;
 use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class ObjectMapperBuilderTest extends TestCase
 {
     public function testSuccess()

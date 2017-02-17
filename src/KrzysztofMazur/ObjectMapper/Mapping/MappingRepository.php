@@ -6,6 +6,9 @@ use KrzysztofMazur\ObjectMapper\Exception\MappingException;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldFactory;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldsMatchmakerInterface;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class MappingRepository implements MappingRepositoryInterface
 {
     /**

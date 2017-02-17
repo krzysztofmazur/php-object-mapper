@@ -7,6 +7,9 @@ use KrzysztofMazur\ObjectMapper\Mapping\Mapping;
 use PHPUnit\Framework\TestCase;
 use TestFixtures\SimpleObject;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 class MappingTest extends TestCase
 {
     public function testMapSuccess()

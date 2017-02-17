@@ -2,6 +2,9 @@
 
 namespace KrzysztofMazur\ObjectMapper\Util;
 
+/**
+ * @author Krzysztof Mazur <krz@ychu.pl>
+ */
 interface PropertyNameConverterInterface
 {
     /**
