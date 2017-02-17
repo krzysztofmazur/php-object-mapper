@@ -1,6 +1,6 @@
 {
     "name": "krzysztofmazur/php-object-mapper",
-    "description": "Simple object mapper for PHP, convert your Model to DTO objects",
+    "description": "Object mapper for PHP, convert your Model to DTO objects",
     "license": "MIT",
     "type": "library",
     "homepage": "https://github.com/krzysztofmazur",
@@ -13,6 +13,9 @@
     "require-dev": {
         "phpunit/phpunit": "^6.0",
         "doctrine/instantiator": "^1.0"
+    },
+    "suggest": {
+        "doctrine/instantiator": "For creating new instances of objects (you can provide own implementation)"
     },
     "autoload": {
         "psr-4": {
