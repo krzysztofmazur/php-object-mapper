@@ -28,6 +28,23 @@ class MappingRepositoryTest extends TestCase
             $this->createMock(FieldsMatchmakerInterface::class)
         );
     }
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidConfiguration2()
+    {
+        $config = [
+            [
+                'from' => SimpleObject::class,
+                'to' => SimpleObject::class,
+            ],
+        ];
+        new MappingRepository(
+            $config,
+            $this->createMock(FieldFactory::class),
+            $this->createMock(FieldsMatchmakerInterface::class)
+        );
+    }
 
     private function getRepository()
     {
