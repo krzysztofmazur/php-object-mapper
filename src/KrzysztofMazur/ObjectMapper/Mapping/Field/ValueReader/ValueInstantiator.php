@@ -8,12 +8,12 @@
 
 namespace KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader;
 
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
  */
-class ValueInitializer implements ValueReaderInterface
+class ValueInstantiator implements ValueReaderInterface
 {
     /**
      * @var string
@@ -21,18 +21,18 @@ class ValueInitializer implements ValueReaderInterface
     private $className;
 
     /**
-     * @var InitializerInterface
+     * @var InstantiatorInterface
      */
-    private $initializer;
+    private $instantiator;
 
     /**
-     * @param string               $className
-     * @param InitializerInterface $initializer
+     * @param string                $className
+     * @param InstantiatorInterface $instantiator
      */
-    public function __construct($className, InitializerInterface $initializer)
+    public function __construct($className, InstantiatorInterface $instantiator)
     {
         $this->className = $className;
-        $this->initializer = $initializer;
+        $this->instantiator = $instantiator;
     }
 
     /**
@@ -40,6 +40,6 @@ class ValueInitializer implements ValueReaderInterface
      */
     public function read($object)
     {
-        return $this->initializer->initialize($this->className);
+        return $this->instantiator->instantiate($this->className);
     }
 }

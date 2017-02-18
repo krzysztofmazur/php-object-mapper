@@ -12,10 +12,10 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\MethodValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\PropertyValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyValueWriter;
-use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInitializer;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInstantiator;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueReaderInterface;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\ValueWriterInterface;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
@@ -27,16 +27,16 @@ class FieldFactory
     const METHOD_ARGS_PATTERN = '/(["\'])(?:(?=(\\\\?))\2.)*?\1/';
 
     /**
-     * @var InitializerInterface
+     * @var InstantiatorInterface
      */
-    private $initializer;
+    private $instantiator;
 
     /**
-     * @param InitializerInterface $initializer
+     * @param InstantiatorInterface $instantiator
      */
-    public function __construct(InitializerInterface $initializer)
+    public function __construct(InstantiatorInterface $instantiator)
     {
-        $this->initializer = $initializer;
+        $this->instantiator = $instantiator;
     }
 
     /**
@@ -60,7 +60,7 @@ class FieldFactory
     private function readerFactory($source)
     {
         if (preg_match(self::CONSTRUCTOR_PATTERN, $source, $matches)) {
-            return new ValueInitializer($matches[1], $this->initializer);
+            return new ValueInstantiator($matches[1], $this->instantiator);
         } else {
             return $this->getValueReaders(explode('.', $source));
         }

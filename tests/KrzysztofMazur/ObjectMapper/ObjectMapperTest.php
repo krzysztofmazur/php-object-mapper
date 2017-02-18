@@ -11,7 +11,7 @@ namespace Tests\KrzysztofMazur\ObjectMapper;
 use KrzysztofMazur\ObjectMapper\Mapping\Mapping;
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepository;
 use KrzysztofMazur\ObjectMapper\ObjectMapper;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 use PHPUnit\Framework\TestCase;
 use Tests\KrzysztofMazur\ObjectMapper\Fixtures\SimpleObject;
 
@@ -25,10 +25,10 @@ class ObjectMapperTest extends TestCase
         $source = $this->createMock(SimpleObject::class);
         $target = $this->createMock(SimpleObject::class);
 
-        $initializer = $this->createMock(InitializerInterface::class);
-        $initializer
+        $instantiator = $this->createMock(InstantiatorInterface::class);
+        $instantiator
             ->expects(self::once())
-            ->method('initialize')
+            ->method('instantiate')
             ->with(self::equalTo(SimpleObject::class))
             ->willReturn($target);
 
@@ -46,7 +46,7 @@ class ObjectMapperTest extends TestCase
             ->with(get_class($source), get_class($target))
             ->willReturn($mapping);
 
-        $mapper = new ObjectMapper($initializer, $repository);
+        $mapper = new ObjectMapper($instantiator, $repository);
         $mapper->map($source, SimpleObject::class);
     }
 }

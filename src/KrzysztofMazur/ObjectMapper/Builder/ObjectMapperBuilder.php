@@ -10,7 +10,7 @@ namespace KrzysztofMazur\ObjectMapper\Builder;
 
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepositoryInterface;
 use KrzysztofMazur\ObjectMapper\ObjectMapper;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
@@ -18,9 +18,9 @@ use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 class ObjectMapperBuilder extends AbstractBuilder
 {
     /**
-     * @var InitializerInterface
+     * @var InstantiatorInterface
      */
-    private $initializer;
+    private $instantiator;
 
     /**
      * @var MappingRepositoryInterface
@@ -36,12 +36,12 @@ class ObjectMapperBuilder extends AbstractBuilder
     }
 
     /**
-     * @param InitializerInterface $initializer
+     * @param InstantiatorInterface $instantiator
      * @return $this
      */
-    public function setInitializer(InitializerInterface $initializer)
+    public function setInstantiator(InstantiatorInterface $instantiator)
     {
-        $this->initializer = $initializer;
+        $this->instantiator = $instantiator;
 
         return $this;
     }
@@ -62,9 +62,9 @@ class ObjectMapperBuilder extends AbstractBuilder
      */
     public function build()
     {
-        self::assertNotNull($this->initializer, 'Initializer should be provided');
+        self::assertNotNull($this->instantiator, 'Instantiator should be provided');
         self::assertNotNull($this->repository, 'Mapping repository should be provided');
 
-        return new ObjectMapper($this->initializer, $this->repository);
+        return new ObjectMapper($this->instantiator, $this->repository);
     }
 }

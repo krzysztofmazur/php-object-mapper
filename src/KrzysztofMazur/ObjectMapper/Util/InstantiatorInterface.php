@@ -11,11 +11,11 @@ namespace KrzysztofMazur\ObjectMapper\Util;
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
  */
-interface InitializerInterface
+interface InstantiatorInterface
 {
     /**
      * @param string $className
      * @return mixed
      */
-    public function initialize($className);
+    public function instantiate($className);
 }

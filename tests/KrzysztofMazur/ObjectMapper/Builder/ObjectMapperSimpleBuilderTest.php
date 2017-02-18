@@ -10,7 +10,7 @@ namespace Tests\KrzysztofMazur\ObjectMapper\Builder;
 
 use KrzysztofMazur\ObjectMapper\Builder\ObjectMapperSimpleBuilder;
 use KrzysztofMazur\ObjectMapper\ObjectMapper;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,7 +22,7 @@ class ObjectMapperSimpleBuilderTest extends TestCase
     {
         $mapper = ObjectMapperSimpleBuilder::create()
             ->setConfig([])
-            ->setInitializer($this->createMock(InitializerInterface::class))
+            ->setInstantiator($this->createMock(InstantiatorInterface::class))
             ->build();
 
         self::assertInstanceOf(ObjectMapper::class, $mapper);

@@ -10,7 +10,7 @@ namespace Tests\KrzysztofMazur\ObjectMapper\Integration;
 
 use Doctrine\Instantiator\Instantiator;
 use KrzysztofMazur\ObjectMapper\Integration\DoctrineInstantiatorAdapter;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 use PHPUnit\Framework\TestCase;
 use Tests\KrzysztofMazur\ObjectMapper\Fixtures\SimpleObject;
 
@@ -20,21 +20,21 @@ use Tests\KrzysztofMazur\ObjectMapper\Fixtures\SimpleObject;
 class DoctrineInstantiatorAdapterTest extends TestCase
 {
     /**
-     * @var InitializerInterface
+     * @var InstantiatorInterface
      */
-    private $initializer;
+    private $instantiator;
 
     /**
      * {@inheritdoc}
      */
     public function setUp()
     {
-        $this->initializer = new DoctrineInstantiatorAdapter(new Instantiator());
+        $this->instantiator = new DoctrineInstantiatorAdapter(new Instantiator());
     }
 
     public function testCreateSuccess()
     {
-        $sample = $this->initializer->initialize(SimpleObject::class);
+        $sample = $this->instantiator->instantiate(SimpleObject::class);
 
         self::assertInstanceOf(SimpleObject::class, $sample);
     }

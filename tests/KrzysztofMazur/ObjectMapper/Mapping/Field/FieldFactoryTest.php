@@ -15,8 +15,8 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\MethodValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\MethodValueWriter;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\PropertyValueReader;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueWriter\PropertyValueWriter;
-use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInitializer;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Mapping\Field\ValueReader\ValueInstantiator;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 use PHPUnit\Framework\TestCase;
 use Tests\KrzysztofMazur\ObjectMapper\Fixtures\SimpleObject;
 
@@ -35,9 +35,9 @@ class FieldFactoryTest extends TestCase
      */
     public function setUp()
     {
-        /** @var InitializerInterface $initializer */
-        $initializer = $this->createMock(InitializerInterface::class);
-        $this->factory = new FieldFactory($initializer);
+        /** @var InstantiatorInterface $instantiator */
+        $instantiator = $this->createMock(InstantiatorInterface::class);
+        $this->factory = new FieldFactory($instantiator);
     }
 
     /**
@@ -46,8 +46,8 @@ class FieldFactoryTest extends TestCase
     public function dataForFieldTests()
     {
         return [
-            ['new '.SimpleObject::class.'()', 'property1', ValueInitializer::class, PropertyValueWriter::class],
-            ['new '.SimpleObject::class.'()', 'setProperty1()', ValueInitializer::class, MethodValueWriter::class],
+            ['new '.SimpleObject::class.'()', 'property1', ValueInstantiator::class, PropertyValueWriter::class],
+            ['new '.SimpleObject::class.'()', 'setProperty1()', ValueInstantiator::class, MethodValueWriter::class],
             ['property1', 'property1', PropertyValueReader::class, PropertyValueWriter::class],
             ['property1', 'setProperty1()', PropertyValueReader::class, MethodValueWriter::class],
             ['getProperty1()', 'property1', MethodValueReader::class, PropertyValueWriter::class],

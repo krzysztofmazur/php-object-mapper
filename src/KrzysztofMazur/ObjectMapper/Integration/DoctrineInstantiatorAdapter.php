@@ -8,32 +8,32 @@
 
 namespace KrzysztofMazur\ObjectMapper\Integration;
 
-use Doctrine\Instantiator\InstantiatorInterface;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use Doctrine\Instantiator\InstantiatorInterface as DoctrineInstantiator;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
  */
-class DoctrineInstantiatorAdapter implements InitializerInterface
+class DoctrineInstantiatorAdapter implements InstantiatorInterface
 {
     /**
-     * @var InstantiatorInterface
+     * @var DoctrineInstantiator
      */
-    private $dockerInstantiator;
+    private $doctrineInstantiator;
 
     /**
-     * @param InstantiatorInterface $dockerInstantiator
+     * @param DoctrineInstantiator $doctrineInstantiator
      */
-    public function __construct(InstantiatorInterface $dockerInstantiator)
+    public function __construct(DoctrineInstantiator $doctrineInstantiator)
     {
-        $this->dockerInstantiator = $dockerInstantiator;
+        $this->doctrineInstantiator = $doctrineInstantiator;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function initialize($className)
+    public function instantiate($className)
     {
-        return $this->dockerInstantiator->instantiate($className);
+        return $this->doctrineInstantiator->instantiate($className);
     }
 }

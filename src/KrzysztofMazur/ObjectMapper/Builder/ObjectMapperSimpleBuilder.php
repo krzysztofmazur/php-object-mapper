@@ -12,7 +12,7 @@ use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldFactory;
 use KrzysztofMazur\ObjectMapper\Mapping\Field\FieldsMatchmaker;
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepository;
 use KrzysztofMazur\ObjectMapper\ObjectMapper;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 use KrzysztofMazur\ObjectMapper\Util\PropertyNameConverter;
 
 /**
@@ -26,9 +26,9 @@ class ObjectMapperSimpleBuilder extends AbstractBuilder
     private $config;
 
     /**
-     * @var InitializerInterface
+     * @var InstantiatorInterface
      */
-    private $initializer;
+    private $instantiator;
 
     /**
      * @return ObjectMapperSimpleBuilder
@@ -50,12 +50,12 @@ class ObjectMapperSimpleBuilder extends AbstractBuilder
     }
 
     /**
-     * @param InitializerInterface $initializer
+     * @param InstantiatorInterface $instantiator
      * @return $this
      */
-    public function setInitializer(InitializerInterface $initializer)
+    public function setInstantiator(InstantiatorInterface $instantiator)
     {
-        $this->initializer = $initializer;
+        $this->instantiator = $instantiator;
 
         return $this;
     }
@@ -65,15 +65,15 @@ class ObjectMapperSimpleBuilder extends AbstractBuilder
      */
     public function build()
     {
-        self::assertNotNull($this->initializer, 'Initializer should be provided');
+        self::assertNotNull($this->instantiator, 'Instantiator should be provided');
         self::assertNotNull($this->config, 'Mapping configuration should be provided');
 
         $repository = new MappingRepository(
             $this->config,
-            new FieldFactory($this->initializer),
+            new FieldFactory($this->instantiator),
             new FieldsMatchmaker(new PropertyNameConverter())
         );
 
-        return new ObjectMapper($this->initializer, $repository);
+        return new ObjectMapper($this->instantiator, $repository);
     }
 }

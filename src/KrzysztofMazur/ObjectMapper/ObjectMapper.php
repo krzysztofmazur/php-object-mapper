@@ -9,7 +9,7 @@
 namespace KrzysztofMazur\ObjectMapper;
 
 use KrzysztofMazur\ObjectMapper\Mapping\MappingRepositoryInterface;
-use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
+use KrzysztofMazur\ObjectMapper\Util\InstantiatorInterface;
 
 /**
  * @author Krzysztof Mazur <krz@ychu.pl>
@@ -17,9 +17,9 @@ use KrzysztofMazur\ObjectMapper\Util\InitializerInterface;
 class ObjectMapper implements ObjectMapperInterface
 {
     /**
-     * @var InitializerInterface
+     * @var InstantiatorInterface
      */
-    private $initializer;
+    private $instantiator;
 
     /**
      * @var MappingRepositoryInterface
@@ -27,12 +27,12 @@ class ObjectMapper implements ObjectMapperInterface
     private $repository;
 
     /**
-     * @param InitializerInterface       $initializer
+     * @param InstantiatorInterface      $instantiator
      * @param MappingRepositoryInterface $mappingRepository
      */
-    public function __construct(InitializerInterface $initializer, MappingRepositoryInterface $mappingRepository)
+    public function __construct(InstantiatorInterface $instantiator, MappingRepositoryInterface $mappingRepository)
     {
-        $this->initializer = $initializer;
+        $this->instantiator = $instantiator;
         $this->repository = $mappingRepository;
     }
 
@@ -41,7 +41,7 @@ class ObjectMapper implements ObjectMapperInterface
      */
     public function map($source, $targetClass, $mapId = null)
     {
-        $object = $this->initializer->initialize($targetClass);
+        $object = $this->instantiator->instantiate($targetClass);
         $this->mapToObject($source, $object, $mapId);
 
         return $object;
