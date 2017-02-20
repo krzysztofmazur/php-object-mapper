@@ -38,7 +38,7 @@ class MappingRepository implements MappingRepositoryInterface
             }
             $auto = isset($mappingConfiguration['auto']) ? $mappingConfiguration['auto'] : false;
             $fields = isset($mappingConfiguration['fields']) ? $mappingConfiguration['fields'] : [];
-            $this->mappings[$mapId][] = MappingBuilder::getInstance()
+            $this->mappings[$mapId][] = MappingBuilder::create()
                 ->setFields($fields)
                 ->setSourceClass($mappingConfiguration['from'])
                 ->setTargetClass($mappingConfiguration['to'])

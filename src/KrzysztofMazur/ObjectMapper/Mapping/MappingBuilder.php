@@ -51,7 +51,7 @@ class MappingBuilder
      *
      * @codeCoverageIgnore
      */
-    public static function getInstance()
+    public static function create()
     {
         return new self();
     }
