@@ -39,11 +39,33 @@ class FieldsMatchmaker implements FieldsMatchmakerInterface
         $fields = [];
         $targetClassProperties = Reflection::getPropertyNames($targetClass);
         $sourceClassProperties = Reflection::getPropertyNames($sourceClass);
+        $this->matchProperties($fields, $targetClassProperties, $sourceClassProperties);
+        $this->matchAccessors($fields, $targetClassProperties, $sourceClass);
+
+        return $fields;
+    }
+
+    /**
+     * @param array $fields
+     * @param array $targetClassProperties
+     * @param array $sourceClassProperties
+     */
+    private function matchProperties(&$fields, $targetClassProperties, $sourceClassProperties)
+    {
         foreach ($targetClassProperties as $targetClassProperty) {
             if (in_array($targetClassProperty, $sourceClassProperties)) {
                 $fields[$targetClassProperty] = $targetClassProperty;
             }
         }
+    }
+
+    /**
+     * @param array  $fields
+     * @param array  $targetClassProperties
+     * @param string $sourceClass
+     */
+    private function matchAccessors(&$fields, $targetClassProperties, $sourceClass)
+    {
         $parsedGetters = $this->parseGetters($this->getClassGetters($sourceClass));
         foreach ($parsedGetters as $property => $getter) {
             if (isset($fields[$property])) {
@@ -53,8 +75,6 @@ class FieldsMatchmaker implements FieldsMatchmakerInterface
                 $fields[$property] = sprintf("%s()", $getter);
             }
         }
-
-        return $fields;
     }
 
     /**
